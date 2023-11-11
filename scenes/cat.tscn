@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjns4ocojvbog"]
+
+[ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
+[ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cat.png" id="2_h067a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pea36"]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25wiu"]
+radius = 20.0
+
+[node name="Cat" type="CharacterBody2D"]
+script = ExtResource("1_it10l")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pea36")
+
+[node name="CatSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_h067a")
+
+[node name="PatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(-40, 40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(40, 40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(40, 0)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="PatArea"]
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(-40, 0)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(-40, -40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="PatArea"]
+position = Vector2(40, -40)
+shape = SubResource("CircleShape2D_25wiu")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RayCastTop" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, -64)
+
+[node name="RayCastBottom" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 64)
+
+[node name="RayCastLeft" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(-64, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(64, 0)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="MoveWaitTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
+[connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]
+[connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]

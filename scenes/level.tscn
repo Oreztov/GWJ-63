@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl1n5hla1lvfn"]
+
+[ext_resource type="PackedScene" uid="uid://bjns4ocojvbog" path="res://scenes/cat.tscn" id="1_aj8cr"]
+
+[sub_resource type="Gradient" id="Gradient_k0v2m"]
+colors = PackedColorArray(0.0666667, 0.172549, 0.827451, 0.282353, 0.12549, 0.388235, 0.54902, 0.4)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ayog8"]
+gradient = SubResource("Gradient_k0v2m")
+width = 1920
+height = 1080
+fill_from = Vector2(0.605505, 1)
+fill_to = Vector2(0.587156, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq1r3"]
+size = Vector2(2416, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2rjp"]
+size = Vector2(288, 1568)
+
+[node name="Level" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ayog8")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Cat" parent="." instance=ExtResource("1_aj8cr")]
+position = Vector2(901, 409)
+
+[node name="Cat2" parent="." instance=ExtResource("1_aj8cr")]
+position = Vector2(264, 296)
+
+[node name="Cat3" parent="." instance=ExtResource("1_aj8cr")]
+position = Vector2(1488, 720)
+
+[node name="Cat4" parent="." instance=ExtResource("1_aj8cr")]
+position = Vector2(528, 696)
+
+[node name="Cat5" parent="." instance=ExtResource("1_aj8cr")]
+position = Vector2(1456, 208)
+
+[node name="LevelBounds" type="StaticBody2D" parent="."]
+
+[node name="TopBottomBoundary" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(1016, -100)
+shape = SubResource("RectangleShape2D_yq1r3")
+
+[node name="TopBottomBoundary2" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(937, 1180)
+shape = SubResource("RectangleShape2D_yq1r3")
+
+[node name="LeftRightBoundary" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(2064, 528)
+shape = SubResource("RectangleShape2D_o2rjp")
+
+[node name="LeftRightBoundary2" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(-144, 560)
+shape = SubResource("RectangleShape2D_o2rjp")
