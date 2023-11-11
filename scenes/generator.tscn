@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://t0qjc1gj5u8x"]
 
 [ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/generator.png" id="1_oornm"]
-[ext_resource type="Texture2D" uid="uid://d17xqbdx5vdgb" path="res://textures/Untitled.png" id="2_aw2w1"]
+[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/grid.png" id="2_okwus"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
 radius = 88.0
@@ -42,6 +42,6 @@ texture = SubResource("GradientTexture2D_bjejx")
 
 [node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/ChargeMask"]
 texture_repeat = 2
-texture = ExtResource("2_aw2w1")
+texture = ExtResource("2_okwus")
 region_enabled = true
 region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)
