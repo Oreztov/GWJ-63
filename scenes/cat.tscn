@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjns4ocojvbog"]
+[gd_scene load_steps=8 format=3 uid="uid://bjns4ocojvbog"]
 
 [ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
-[ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cat.png" id="2_h067a"]
+[ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cats/cat_base.png" id="2_1blq3"]
+[ext_resource type="Texture2D" uid="uid://c38jt0d4vbweu" path="res://textures/cats/cat_colors/cat_color_1.png" id="2_2ptla"]
+[ext_resource type="Texture2D" uid="uid://bxoje4gn2jpu0" path="res://textures/light.png" id="4_fuo88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pea36"]
 radius = 56.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bc4ia"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25wiu"]
 radius = 20.0
@@ -15,9 +20,20 @@ script = ExtResource("1_it10l")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pea36")
 
-[node name="CatSprite" type="Sprite2D" parent="."]
+[node name="Textures" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_h067a")
+
+[node name="CatColor" type="Sprite2D" parent="Textures"]
+texture = ExtResource("2_2ptla")
+
+[node name="CatBase" type="Sprite2D" parent="Textures"]
+texture = ExtResource("2_1blq3")
+
+[node name="CatLight" type="Sprite2D" parent="Textures"]
+modulate = Color(0, 1, 1, 1)
+material = SubResource("CanvasItemMaterial_bc4ia")
+scale = Vector2(6, 6)
+texture = ExtResource("4_fuo88")
 
 [node name="PatArea" type="Area2D" parent="."]
 
@@ -82,6 +98,11 @@ process_callback = 0
 wait_time = 1.5
 one_shot = true
 
+[node name="PowerGainTimer" type="Timer" parent="Timers"]
+process_callback = 0
+autostart = true
+
 [connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]
 [connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]
+[connection signal="timeout" from="Timers/PowerGainTimer" to="." method="_on_power_gain_timer_timeout"]
