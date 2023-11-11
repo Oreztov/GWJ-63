@@ -11,6 +11,8 @@ var move_time_min = 1.0
 var move_time_max = 2.5
 var wait_time_min = 1.5
 var wait_time_max = 3.0
+var blink_time_min = 3
+var blink_time_max = 6
 
 var speed = 0
 var moves = 0
@@ -21,6 +23,7 @@ var direction = Vector2.ZERO
 # Cat Flags
 var is_moving = false
 var in_generator = false
+var is_grabbed = false
 
 # Power variables
 var power_gain = 1
@@ -34,8 +37,11 @@ var power_time = 0
 func _ready():
 	$Timers/MoveWaitTimer.wait_time = randf_range(wait_time_min, wait_time_max)
 	$Timers/MoveWaitTimer.start()
+	$Timers/BlinkTimer.wait_time = randf_range(blink_time_min, blink_time_max)
+	$Timers/BlinkTimer.start()
 	$Timers/PowerGainTimer.wait_time = power_gain_time
 	$Timers/PowerGainTimer.paused = true
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -44,6 +50,11 @@ func _physics_process(delta):
 		var progress = $Timers/MoveTimer.time_left / $Timers/MoveTimer.wait_time
 		var current_speed = (2 * (-pow(progress, 2) + progress)) * speed
 		velocity = direction * current_speed
+		# Slightly rotate
+		if velocity.x != 0:
+			rotation = (PI / 1500) * velocity.x
+		else:
+			rotation = 0
 		move_and_slide()
 	# Handle powering
 	if in_generator:
@@ -55,8 +66,9 @@ func _physics_process(delta):
 		$Textures/CatLight.modulate.a = 0
 
 func _on_pat_area_mouse_entered():
-	power_time += power_time_increment
-	power_time = clampf(power_time, 0.0, power_time_max)
+	if not is_grabbed:
+		power_time += power_time_increment
+		power_time = clampf(power_time, 0.0, power_time_max)
 
 func _on_move_wait_timer_timeout():
 	# New set of moves
@@ -132,3 +144,10 @@ func _on_charge_area_area_exited(area):
 	if area.is_in_group("generator"):
 		in_generator = false
 		$Timers/PowerGainTimer.paused = true
+
+
+func _on_blink_timer_timeout():
+	$Textures/CatSprite.stop()
+	$Textures/CatSprite.play("eyes_closed")
+	$Textures/CatHighlights.stop()
+	$Textures/CatHighlights.play("eyes_closed")

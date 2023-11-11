@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c38jt0d4vbweu"
-path="res://.godot/imported/cat_color_1.png-c606634f3a9f8a69217b7bd1cb2c4e93.ctex"
+uid="uid://b65c7mpcyn7kw"
+path="res://.godot/imported/cat_eyes_closed.png-c30ea0c7c2c7646b2c6fc3ee47e132ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/cats/cat_colors/cat_color_1.png"
-dest_files=["res://.godot/imported/cat_color_1.png-c606634f3a9f8a69217b7bd1cb2c4e93.ctex"]
+source_file="res://textures/cats/cat_eyes_closed.png"
+dest_files=["res://.godot/imported/cat_eyes_closed.png-c30ea0c7c2c7646b2c6fc3ee47e132ec.ctex"]
 
 [params]
 

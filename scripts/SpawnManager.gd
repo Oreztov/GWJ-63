@@ -27,12 +27,12 @@ func spawn_cat():
 	new_cat.global_position = Vector2(randi_range(0, 1920), randi_range(0, 1080))
 	# Random cat color
 	var new_texture = cat_colors[randi_range(0, len(cat_colors))-1]
-	new_cat.get_node("Textures/CatColor").texture = load(new_texture)
+	new_cat.get_node("Textures/CatSprite").material.set_shader_parameter("palette", load(new_texture))
 	level_reference.call_deferred("add_child", new_cat)
 	
 func create_popup(pos, texture, text):
 	var new_popup = popup.instantiate()
-	new_popup.position = pos
+	new_popup.global_position = pos
 	new_popup.texture = texture
 	new_popup.text = text
 	new_popup.create()

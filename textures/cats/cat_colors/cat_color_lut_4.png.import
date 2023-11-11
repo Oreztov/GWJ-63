@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4nrwa7m0frdh"
-path="res://.godot/imported/cursor_new.png-f744608b26ac4507d20d71a51a9b051d.ctex"
+uid="uid://dkmjbwr4cew83"
+path="res://.godot/imported/cat_color_lut_4.png-20d884f18f7f1400aba040e09c303c52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/cursor_new.png"
-dest_files=["res://.godot/imported/cursor_new.png-f744608b26ac4507d20d71a51a9b051d.ctex"]
+source_file="res://textures/cats/cat_colors/cat_color_lut_4.png"
+dest_files=["res://.godot/imported/cat_color_lut_4.png-20d884f18f7f1400aba040e09c303c52.ctex"]
 
 [params]
 

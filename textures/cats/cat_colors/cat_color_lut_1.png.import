@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdojgjfb33o1e"
-path="res://.godot/imported/cat_color_2.png-502272774a0fd18bc4718642dd133604.ctex"
+uid="uid://dpg0u0fsa07dj"
+path="res://.godot/imported/cat_color_lut_1.png-3b1b491565cfb7eb06ad63b1dcbdc910.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/cats/cat_colors/cat_color_2.png"
-dest_files=["res://.godot/imported/cat_color_2.png-502272774a0fd18bc4718642dd133604.ctex"]
+source_file="res://textures/cats/cat_colors/cat_color_lut_1.png"
+dest_files=["res://.godot/imported/cat_color_lut_1.png-3b1b491565cfb7eb06ad63b1dcbdc910.ctex"]
 
 [params]
 
