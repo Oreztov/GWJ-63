@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjns4ocojvbog"]
+[gd_scene load_steps=9 format=3 uid="uid://bjns4ocojvbog"]
 
 [ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
 [ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cats/cat_base.png" id="2_1blq3"]
@@ -13,6 +13,9 @@ blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25wiu"]
 radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owm8i"]
+radius = 72.0
 
 [node name="Cat" type="CharacterBody2D"]
 script = ExtResource("1_it10l")
@@ -72,6 +75,11 @@ shape = SubResource("CircleShape2D_25wiu")
 position = Vector2(40, -40)
 shape = SubResource("CircleShape2D_25wiu")
 
+[node name="ChargeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
+shape = SubResource("CircleShape2D_owm8i")
+
 [node name="Raycasts" type="Node2D" parent="."]
 
 [node name="RayCastTop" type="RayCast2D" parent="Raycasts"]
@@ -103,6 +111,8 @@ process_callback = 0
 autostart = true
 
 [connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]
+[connection signal="area_entered" from="ChargeArea" to="." method="_on_charge_area_area_entered"]
+[connection signal="area_exited" from="ChargeArea" to="." method="_on_charge_area_area_exited"]
 [connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]
 [connection signal="timeout" from="Timers/PowerGainTimer" to="." method="_on_power_gain_timer_timeout"]

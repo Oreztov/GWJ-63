@@ -18,8 +18,9 @@ var moves_current = 0
 
 var direction = Vector2.ZERO
 
-# Movement Flags
-var is_moving
+# Cat Flags
+var is_moving = false
+var in_generator = false
 
 # Power variables
 var power_gain = 1
@@ -34,6 +35,7 @@ func _ready():
 	$Timers/MoveWaitTimer.wait_time = randf_range(wait_time_min, wait_time_max)
 	$Timers/MoveWaitTimer.start()
 	$Timers/PowerGainTimer.wait_time = power_gain_time
+	$Timers/PowerGainTimer.paused = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -44,9 +46,13 @@ func _physics_process(delta):
 		velocity = direction * current_speed
 		move_and_slide()
 	# Handle powering
-	power_time -= delta
+	if in_generator:
+		power_time -= delta
 	var power_progress = power_time / power_time_max
-	$Textures/CatLight.modulate.a = power_progress + 0.1
+	if power_time > 0:
+		$Textures/CatLight.modulate.a = power_progress + 0.1
+	else:
+		$Textures/CatLight.modulate.a = 0
 
 func _on_pat_area_mouse_entered():
 	power_time += power_time_increment
@@ -112,3 +118,17 @@ func _on_power_gain_timer_timeout():
 	if power_time > 0:
 		PowerManager.change_power(power_gain)
 		SpawnManager.create_popup(global_position, load("res://textures/power.png"), str(power_gain))
+
+
+func _on_charge_area_area_entered(area):
+	# Entered generator
+	if area.is_in_group("generator"):
+		in_generator = true
+		$Timers/PowerGainTimer.paused = false
+
+
+func _on_charge_area_area_exited(area):
+	# Exited generator
+	if area.is_in_group("generator"):
+		in_generator = false
+		$Timers/PowerGainTimer.paused = true

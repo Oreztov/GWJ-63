@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://t0qjc1gj5u8x"]
+
+[ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/generator.png" id="1_oornm"]
+[ext_resource type="Texture2D" uid="uid://d17xqbdx5vdgb" path="res://textures/Untitled.png" id="2_aw2w1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
+radius = 88.0
+height = 240.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3wuv"]
+size = Vector2(300, 500)
+
+[sub_resource type="Gradient" id="Gradient_nhekk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bjejx"]
+gradient = SubResource("Gradient_nhekk")
+width = 300
+height = 500
+
+[node name="Generator" type="StaticBody2D"]
+
+[node name="GeneratorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_oornm")
+
+[node name="GeneratorCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nqox0")
+
+[node name="ChargeArea" type="Area2D" parent="." groups=["generator"]]
+show_behind_parent = true
+position = Vector2(168, 48)
+skew = -0.0872665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
+shape = SubResource("RectangleShape2D_w3wuv")
+
+[node name="ChargeMask" type="Sprite2D" parent="ChargeArea"]
+clip_children = 1
+texture_repeat = 2
+texture = SubResource("GradientTexture2D_bjejx")
+
+[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/ChargeMask"]
+texture_repeat = 2
+texture = ExtResource("2_aw2w1")
+region_enabled = true
+region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)
