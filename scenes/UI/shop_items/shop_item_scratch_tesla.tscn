@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ca878h1mnlkbs" path="res://textures/items/scratch_tesla.png" id="3_pftvl"]
 
 [node name="ScratchTesla" instance=ExtResource("1_gs2l1")]
-tooltip_text = "Extracts and collects power from cats in a certain area."
+tooltip_text = "Charges cats within a certain area."
 power_cost = 150
 power_usage = 1.25
 item = ExtResource("2_ytqb8")

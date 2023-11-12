@@ -2,6 +2,9 @@ extends Grabbable
 
 var cats_array = []
 
+func _physics_process(delta):
+	super(delta)
+	queue_redraw()
 
 func _on_charge_area_body_entered(body):
 	# Cat entered area
@@ -11,6 +14,9 @@ func _on_charge_area_body_entered(body):
 			return
 		cats_array.append(body)
 
+func _draw():
+	for cat in cats_array:
+		draw_dashed_line(Vector2.ZERO, cat.global_position - global_position, Color.AQUA, 20, 10)
 
 func _on_charge_area_body_exited(body):
 	# Cat exited area
