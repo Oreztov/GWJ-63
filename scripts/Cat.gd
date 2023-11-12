@@ -69,6 +69,7 @@ func _on_pat_area_mouse_entered():
 	if not is_grabbed:
 		power_time += power_time_increment
 		power_time = clampf(power_time, 0.0, power_time_max)
+		MouseManager.pat()
 
 func _on_move_wait_timer_timeout():
 	# New set of moves

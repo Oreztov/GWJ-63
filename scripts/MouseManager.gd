@@ -6,6 +6,7 @@ var cat_reference = null
 # Cursor images
 @onready var cursor_default = preload("res://textures/cursors/cursor_new.png")
 @onready var cursor_grab = preload("res://textures/cursors/cursor_grab.png")
+@onready var cursor_pat = preload("res://textures/cursors/cursor_pat.png")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,9 +32,18 @@ func _input(event):
 				cat_reference.is_grabbed = false
 				cat_reference = null
 				holding_cat = false
-				Input.set_custom_mouse_cursor(cursor_default)
+				reset_cursor()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if cat_reference != null:
 		cat_reference.global_position = get_viewport().get_mouse_position()
+		
+func pat():
+	if not holding_cat:
+		Input.set_custom_mouse_cursor(cursor_pat)
+		get_tree().create_timer(0.25, true, true).timeout.connect(reset_cursor)
+		
+func reset_cursor():
+	if not holding_cat:
+		Input.set_custom_mouse_cursor(cursor_default)
