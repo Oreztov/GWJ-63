@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://bwgdqyyw716ci"]
+
+[ext_resource type="Script" path="res://scripts/items/scratch_tesla.gd" id="1_sicxx"]
+[ext_resource type="Texture2D" uid="uid://ca878h1mnlkbs" path="res://textures/items/scratch_tesla.png" id="2_kb6sb"]
+[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="3_hb5i8"]
+[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="4_0urw0"]
+[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_33uqx"]
+[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_ludj3"]
+[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_u6m3i"]
+[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="8_0f0tb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_he7nn"]
+radius = 48.0
+height = 352.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bc7kc"]
+radius = 40.0
+height = 272.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj5dk"]
+size = Vector2(304, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oqit"]
+radius = 232.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vd22r"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sai71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hb5i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0urw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_33uqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ludj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u6m3i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="ScratchTesla" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_sicxx")
+
+[node name="GeneratorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_kb6sb")
+
+[node name="GeneratorCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("CapsuleShape2D_he7nn")
+
+[node name="GeneratorCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -192)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bc7kc")
+
+[node name="GeneratorCollision3" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 204)
+shape = SubResource("RectangleShape2D_fj5dk")
+
+[node name="ChargeArea" type="Area2D" parent="." groups=["scratchers"]]
+show_behind_parent = true
+position = Vector2(0, 80)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
+shape = SubResource("CircleShape2D_8oqit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ChargeArea"]
+clip_children = 2
+material = SubResource("CanvasItemMaterial_vd22r")
+sprite_frames = SubResource("SpriteFrames_sai71")
+autoplay = "default"
+frame_progress = 0.456281
+
+[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/AnimatedSprite2D"]
+visible = false
+modulate = Color(1, 1, 1, 0.643137)
+show_behind_parent = true
+texture_repeat = 2
+position = Vector2(168, 48)
+skew = -0.0872664
+texture = ExtResource("8_0f0tb")
+region_enabled = true
+region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)
+
+[node name="ChargeTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="ChargeArea" to="." method="_on_charge_area_body_entered"]
+[connection signal="body_exited" from="ChargeArea" to="." method="_on_charge_area_body_exited"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

@@ -12,6 +12,7 @@ func _ready():
 	add_to_group("grabbables")
 	
 func _physics_process(delta):
+	move_and_collide(Vector2.ZERO)
 	if grabbed:
 		global_position = get_viewport().get_mouse_position()
 	

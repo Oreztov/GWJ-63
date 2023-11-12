@@ -21,6 +21,7 @@ var direction = Vector2.ZERO
 # Cat Flags
 var is_moving = false
 var in_generator = false
+var in_scratcher = false
 
 var power_time = 0
 
