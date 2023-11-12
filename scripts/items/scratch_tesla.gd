@@ -20,5 +20,4 @@ func _on_charge_area_body_exited(body):
 
 func _on_charge_timer_timeout():
 	for cat in cats_array:
-		cat.power_time += PowerManager.power_time_increment
-		cat.power_time = clampf(cat.power_time, 0.0, PowerManager.power_time_max)
+		cat.charge()

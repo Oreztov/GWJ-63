@@ -63,10 +63,13 @@ func _physics_process(delta):
 func _on_pat_area_mouse_entered():
 	# If not holding anything and available
 	if MouseManager.grabbable == null and MouseManager.is_processing_input():
-		power_time += PowerManager.power_time_increment
-		power_time = clampf(power_time, 0.0, PowerManager.power_time_max)
+		charge()
 		# Pat
 		MouseManager.pat()
+		
+func charge():
+	power_time += PowerManager.power_time_increment
+	power_time = clampf(power_time, 0.0, PowerManager.power_time_max)
 
 func _on_move_wait_timer_timeout():
 	# New set of moves

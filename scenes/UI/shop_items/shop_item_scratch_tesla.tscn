@@ -6,6 +6,7 @@
 
 [node name="ScratchTesla" instance=ExtResource("1_gs2l1")]
 tooltip_text = "Extracts and collects power from cats in a certain area."
+power_cost = 150
 power_usage = 1.25
 item = ExtResource("2_ytqb8")
 
