@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bymhgnmqs8ff0"
-path="res://.godot/imported/grid.png-aa6ab1fd1f97e22f02b564754520af6c.ctex"
+uid="uid://cdgvv86crek6v"
+path="res://.godot/imported/circle1.png-189b548f9b11e661682b4aee115b68fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/grid.png"
-dest_files=["res://.godot/imported/grid.png-aa6ab1fd1f97e22f02b564754520af6c.ctex"]
+source_file="res://textures/UI/circle_marker/circle1.png"
+dest_files=["res://.godot/imported/circle1.png-189b548f9b11e661682b4aee115b68fe.ctex"]
 
 [params]
 

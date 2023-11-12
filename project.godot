@@ -17,9 +17,9 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
-PowerManager="*res://scripts/PowerManager.gd"
 SpawnManager="*res://scripts/SpawnManager.gd"
 MouseManager="*res://scenes/mouse_manager.tscn"
+PowerManager="*res://scenes/power_manager.tscn"
 
 [display]
 

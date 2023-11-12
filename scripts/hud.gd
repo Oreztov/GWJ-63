@@ -9,7 +9,8 @@ func _ready():
 	PowerManager.game_reset.connect(reset)
 	
 func change_power():
-	$Topbar/PowerPanel/HBoxContainer/PowerLabel.text = str(PowerManager.power)
+	$Topbar/PowerPanel/HBoxContainer/PowerLabel.text = str(floor(PowerManager.power))
+	$Topbar/UsagePanel/HBoxContainer/UsageLabel.text = str((PowerManager.usage))
 	
 func reset():
 	change_power()

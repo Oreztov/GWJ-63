@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name Cat
+extends Grabbable
 
 # Movement Variables
 var speed_min = 500
@@ -23,7 +21,6 @@ var direction = Vector2.ZERO
 # Cat Flags
 var is_moving = false
 var in_generator = false
-var is_grabbed = false
 
 # Power variables
 var power_gain = 1
@@ -35,6 +32,7 @@ var power_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super()
 	$Timers/MoveWaitTimer.wait_time = randf_range(wait_time_min, wait_time_max)
 	$Timers/MoveWaitTimer.start()
 	$Timers/BlinkTimer.wait_time = randf_range(blink_time_min, blink_time_max)
@@ -45,6 +43,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	super(delta)
+	
 	# Handle movement
 	if is_moving:
 		var progress = $Timers/MoveTimer.time_left / $Timers/MoveTimer.wait_time
@@ -66,9 +66,11 @@ func _physics_process(delta):
 		$Textures/CatLight.modulate.a = 0
 
 func _on_pat_area_mouse_entered():
-	if not is_grabbed:
+	# If not holding anything
+	if MouseManager.grabbable == null:
 		power_time += power_time_increment
 		power_time = clampf(power_time, 0.0, power_time_max)
+		# Pat
 		MouseManager.pat()
 
 func _on_move_wait_timer_timeout():
@@ -130,7 +132,7 @@ func _on_power_gain_timer_timeout():
 	# Gain power
 	if power_time > 0:
 		PowerManager.change_power(power_gain)
-		SpawnManager.create_popup(global_position, load("res://textures/power.png"), str(power_gain))
+		SpawnManager.create_popup(global_position, load("res://textures/UI/power.png"), str(power_gain))
 
 
 func _on_charge_area_area_entered(area):

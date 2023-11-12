@@ -1,25 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://t0qjc1gj5u8x"]
+[gd_scene load_steps=13 format=3 uid="uid://t0qjc1gj5u8x"]
 
+[ext_resource type="Script" path="res://scripts/Grabbable.gd" id="1_mxbqw"]
 [ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/generator.png" id="1_oornm"]
-[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/grid.png" id="2_okwus"]
+[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="2_805iw"]
+[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="2_dotky"]
+[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="3_2lbtu"]
+[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="4_wt1lk"]
+[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="5_jfd6e"]
+[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="6_m7n6y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
 radius = 88.0
 height = 240.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3wuv"]
-size = Vector2(300, 500)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oqit"]
+radius = 232.0
 
-[sub_resource type="Gradient" id="Gradient_nhekk"]
-colors = PackedColorArray(0, 1, 1, 0.478431, 1, 0.313726, 1, 0.419608)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vd22r"]
+blend_mode = 1
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bjejx"]
-gradient = SubResource("Gradient_nhekk")
-width = 300
-height = 500
-fill_from = Vector2(0, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_sai71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dotky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2lbtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wt1lk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfd6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m7n6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
 
-[node name="Generator" type="StaticBody2D"]
+[node name="Generator" type="CharacterBody2D"]
+script = ExtResource("1_mxbqw")
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_oornm")
@@ -31,20 +55,26 @@ shape = SubResource("CapsuleShape2D_nqox0")
 
 [node name="ChargeArea" type="Area2D" parent="." groups=["generator"]]
 show_behind_parent = true
-position = Vector2(168, 48)
-skew = -0.0872665
+position = Vector2(104, 32)
+scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
-shape = SubResource("RectangleShape2D_w3wuv")
+shape = SubResource("CircleShape2D_8oqit")
 
-[node name="ChargeMask" type="Sprite2D" parent="ChargeArea"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ChargeArea"]
 clip_children = 2
-texture_repeat = 2
-texture = SubResource("GradientTexture2D_bjejx")
+material = SubResource("CanvasItemMaterial_vd22r")
+sprite_frames = SubResource("SpriteFrames_sai71")
+autoplay = "default"
+frame_progress = 0.456281
 
-[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/ChargeMask"]
+[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/AnimatedSprite2D"]
+visible = false
 modulate = Color(1, 1, 1, 0.643137)
+show_behind_parent = true
 texture_repeat = 2
-texture = ExtResource("2_okwus")
+position = Vector2(168, 48)
+skew = -0.0872664
+texture = ExtResource("2_805iw")
 region_enabled = true
 region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://beu4kt4vyc7d0"]
 
 [ext_resource type="Script" path="res://scripts/popup.gd" id="1_dx5mh"]
-[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/power.png" id="1_mndn1"]
+[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="2_a4xu1"]
 [ext_resource type="FontFile" uid="uid://bgobll5lhkjnf" path="res://fonts/static/PlaypenSans-ExtraBold.ttf" id="2_i3ria"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_foa8u"]
@@ -118,7 +118,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_mndn1")
+texture = ExtResource("2_a4xu1")
 
 [node name="PopupText" type="Label" parent="Control"]
 layout_mode = 1

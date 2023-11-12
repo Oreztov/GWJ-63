@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://caadvwhc2seg6"]
+
+[ext_resource type="Script" path="res://scripts/PowerManager.gd" id="1_kairx"]
+
+[node name="power_manager" type="Node2D"]
+script = ExtResource("1_kairx")
+
+[node name="UsageTimer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="timeout" from="UsageTimer" to="." method="_on_usage_timer_timeout"]

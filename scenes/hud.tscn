@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://crc5ol4wp54lw"]
+[gd_scene load_steps=6 format=3 uid="uid://crc5ol4wp54lw"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_cbu8s"]
 [ext_resource type="Theme" uid="uid://bq5t78xyahj5w" path="res://resources/themes/hud_theme.tres" id="1_idlys"]
-[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/power.png" id="2_w6jcv"]
+[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="3_kpie2"]
+[ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="4_fvmhf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgxfl"]
 font_size = 32
@@ -35,10 +36,34 @@ layout_mode = 2
 
 [node name="PowerIcon" type="TextureRect" parent="Topbar/PowerPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_w6jcv")
+texture = ExtResource("3_kpie2")
 expand_mode = 3
 
 [node name="PowerLabel" type="Label" parent="Topbar/PowerPanel/HBoxContainer"]
 layout_mode = 2
 text = "1984"
+label_settings = SubResource("LabelSettings_xgxfl")
+
+[node name="VSeparator" type="VSeparator" parent="Topbar"]
+layout_mode = 2
+
+[node name="UsagePanel" type="PanelContainer" parent="Topbar"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Topbar/UsagePanel"]
+layout_mode = 2
+
+[node name="UsageIcon" type="TextureRect" parent="Topbar/UsagePanel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_fvmhf")
+expand_mode = 3
+
+[node name="UsageLabel" type="Label" parent="Topbar/UsagePanel/HBoxContainer"]
+layout_mode = 2
+text = "6969"
+label_settings = SubResource("LabelSettings_xgxfl")
+
+[node name="UsageUnits" type="Label" parent="Topbar/UsagePanel/HBoxContainer"]
+layout_mode = 2
+text = "/s"
 label_settings = SubResource("LabelSettings_xgxfl")
