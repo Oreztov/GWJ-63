@@ -1,6 +1,48 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bq5t78xyahj5w"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bq5t78xyahj5w"]
 
 [ext_resource type="FontFile" uid="uid://cq0cpphi3m2it" path="res://fonts/static/PlaypenSans-SemiBold.ttf" id="1_g8741"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jp1i1"]
+bg_color = Color(0, 0, 0, 0.45098)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0.262745, 0.301961, 0.243137)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2txd5"]
+bg_color = Color(0, 0, 0, 0.45098)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0.882353, 1, 0.243137)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhyxq"]
+bg_color = Color(0, 0, 0, 0.45098)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(1, 1, 1, 0.243137)
+shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkb8g"]
 bg_color = Color(0, 0, 0, 0.45098)
@@ -23,6 +65,12 @@ thickness = 2
 vertical = true
 
 [resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_g8741")
+Button/styles/hover = SubResource("StyleBoxFlat_jp1i1")
+Button/styles/normal = SubResource("StyleBoxFlat_2txd5")
+Button/styles/pressed = SubResource("StyleBoxFlat_lhyxq")
+Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_g8741")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_rkb8g")
 VSeparator/constants/separation = 100

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://63jxd13dps3a"]
+
+[ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="1_11j5w"]
+[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="2_cxhde"]
+[ext_resource type="Script" path="res://scripts/UI/shop_item.gd" id="2_ic1te"]
+[ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="4_epr6o"]
+
+[sub_resource type="Gradient" id="Gradient_1coq2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_om5n5"]
+gradient = SubResource("Gradient_1coq2")
+
+[node name="ShopItem" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 400)
+offset_right = 300.0
+offset_bottom = 425.0
+size_flags_horizontal = 6
+tooltip_text = "Lorem Ipsum :)"
+theme = ExtResource("1_11j5w")
+script = ExtResource("2_ic1te")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Template"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_om5n5")
+expand_mode = 4
+
+[node name="UsageContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/TextureRect/UsageContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="UsageLabel" type="Label" parent="VBoxContainer/TextureRect/UsageContainer"]
+layout_mode = 2
+text = "0.5"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/UsageContainer"]
+layout_mode = 2
+texture = ExtResource("4_epr6o")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Buy: XXXXX"
+icon = ExtResource("2_cxhde")
+icon_alignment = 2
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -23,12 +23,10 @@ func _input(event):
 				# Grab
 				for collision in result:
 					if collision.collider.is_in_group("grabbables"):
-						Input.set_custom_mouse_cursor(cursor_grab)
 						collision.collider.grab()
 			else:
-				# Release cat
+				# Release grabbable
 				grabbable.release()
-				reset_cursor()
 		
 func pat():
 	# If not holding anything

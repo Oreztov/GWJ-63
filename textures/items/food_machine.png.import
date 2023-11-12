@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4f4cb7r558vh"
-path="res://.godot/imported/generator.png-9ef5c1ba5d645af9d7aa9497e61ce9a3.ctex"
+uid="uid://c2btfwmf43frk"
+path="res://.godot/imported/food_machine.png-3c626ade2f0f09cabc4dedd5955bdb14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/generator.png"
-dest_files=["res://.godot/imported/generator.png-9ef5c1ba5d645af9d7aa9497e61ce9a3.ctex"]
+source_file="res://textures/items/food_machine.png"
+dest_files=["res://.godot/imported/food_machine.png-3c626ade2f0f09cabc4dedd5955bdb14.ctex"]
 
 [params]
 

@@ -22,12 +22,6 @@ var direction = Vector2.ZERO
 var is_moving = false
 var in_generator = false
 
-# Power variables
-var power_gain = 1
-var power_gain_time = 0.5
-var power_time_max = 2.5
-var power_time_increment = 0.25
-
 var power_time = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +31,7 @@ func _ready():
 	$Timers/MoveWaitTimer.start()
 	$Timers/BlinkTimer.wait_time = randf_range(blink_time_min, blink_time_max)
 	$Timers/BlinkTimer.start()
-	$Timers/PowerGainTimer.wait_time = power_gain_time
+	$Timers/PowerGainTimer.wait_time = PowerManager.power_gain_time
 	$Timers/PowerGainTimer.paused = true
 	
 
@@ -59,17 +53,17 @@ func _physics_process(delta):
 	# Handle powering
 	if in_generator:
 		power_time -= delta
-	var power_progress = power_time / power_time_max
+	var power_progress = power_time / PowerManager.power_time_max
 	if power_time > 0:
 		$Textures/CatLight.modulate.a = power_progress + 0.1
 	else:
 		$Textures/CatLight.modulate.a = 0
 
 func _on_pat_area_mouse_entered():
-	# If not holding anything
-	if MouseManager.grabbable == null:
-		power_time += power_time_increment
-		power_time = clampf(power_time, 0.0, power_time_max)
+	# If not holding anything and available
+	if MouseManager.grabbable == null and MouseManager.is_processing_input():
+		power_time += PowerManager.power_time_increment
+		power_time = clampf(power_time, 0.0, PowerManager.power_time_max)
 		# Pat
 		MouseManager.pat()
 
@@ -131,8 +125,8 @@ func new_move():
 func _on_power_gain_timer_timeout():
 	# Gain power
 	if power_time > 0:
-		PowerManager.change_power(power_gain)
-		SpawnManager.create_popup(global_position, load("res://textures/UI/power.png"), str(power_gain))
+		PowerManager.change_power(PowerManager.power_gain)
+		SpawnManager.create_popup(global_position, load("res://textures/UI/power.png"), str(PowerManager.power_gain))
 
 
 func _on_charge_area_area_entered(area):

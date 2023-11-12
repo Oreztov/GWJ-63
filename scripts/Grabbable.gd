@@ -21,8 +21,10 @@ func grab():
 		MouseManager.grabbable.release()
 	grabbed = true
 	MouseManager.grabbable = self
+	Input.set_custom_mouse_cursor(MouseManager.cursor_grab)
 	
 func release():
 	grabbed = false
 	MouseManager.grabbable = null
+	MouseManager.reset_cursor()
 	

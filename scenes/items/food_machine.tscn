@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://qrgrh12pj53g"]
+
+[ext_resource type="Script" path="res://scripts/items/food_machine.gd" id="1_stxl8"]
+[ext_resource type="Texture2D" uid="uid://c2btfwmf43frk" path="res://textures/items/food_machine.png" id="2_8k56s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3b37"]
+radius = 104.0
+height = 384.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak8lu"]
+size = Vector2(288, 88)
+
+[node name="FoodMachine" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_stxl8")
+
+[node name="GeneratorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_8k56s")
+
+[node name="GeneratorCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e3b37")
+
+[node name="GeneratorCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 164)
+shape = SubResource("RectangleShape2D_ak8lu")

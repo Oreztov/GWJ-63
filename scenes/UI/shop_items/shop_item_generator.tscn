@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://daaap8duxyee2"]
+
+[ext_resource type="PackedScene" uid="uid://63jxd13dps3a" path="res://scenes/UI/shop_items/shop_item.tscn" id="1_8s7id"]
+[ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/items/generator.tscn" id="2_72dry"]
+[ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/items/generator.png" id="3_sgvd2"]
+
+[node name="Generator" instance=ExtResource("1_8s7id")]
+tooltip_text = "Extracts and collects power from cats in a certain area."
+power_cost = 50
+power_usage = 0.0
+item = ExtResource("2_72dry")
+
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "Generator"
+
+[node name="TextureRect" parent="VBoxContainer" index="2"]
+texture = ExtResource("3_sgvd2")

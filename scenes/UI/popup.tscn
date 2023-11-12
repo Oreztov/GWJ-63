@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://beu4kt4vyc7d0"]
 
-[ext_resource type="Script" path="res://scripts/popup.gd" id="1_dx5mh"]
-[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="2_a4xu1"]
-[ext_resource type="FontFile" uid="uid://bgobll5lhkjnf" path="res://fonts/static/PlaypenSans-ExtraBold.ttf" id="2_i3ria"]
+[ext_resource type="Script" path="res://scripts/UI/popup.gd" id="1_wkt1u"]
+[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="2_w7ki2"]
+[ext_resource type="FontFile" uid="uid://bgobll5lhkjnf" path="res://fonts/static/PlaypenSans-ExtraBold.ttf" id="3_rvxsc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_foa8u"]
-font = ExtResource("2_i3ria")
+font = ExtResource("3_rvxsc")
 font_size = 256
 outline_size = 48
 outline_color = Color(0, 0, 0, 1)
@@ -97,7 +97,7 @@ _data = {
 
 [node name="Popup" type="Node2D"]
 scale = Vector2(0.15, 0.15)
-script = ExtResource("1_dx5mh")
+script = ExtResource("1_wkt1u")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -118,7 +118,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_a4xu1")
+texture = ExtResource("2_w7ki2")
 
 [node name="PopupText" type="Label" parent="Control"]
 layout_mode = 1

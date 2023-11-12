@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dl1n5hla1lvfn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c23ku"]
-[ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/generator.tscn" id="2_1g03o"]
+[ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/items/generator.tscn" id="2_1g03o"]
 
 [sub_resource type="Gradient" id="Gradient_k0v2m"]
 colors = PackedColorArray(0.0666667, 0.172549, 0.827451, 0.282353, 0.12549, 0.388235, 0.54902, 0.4)

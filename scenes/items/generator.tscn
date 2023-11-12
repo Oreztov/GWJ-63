@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://t0qjc1gj5u8x"]
 
-[ext_resource type="Script" path="res://scripts/Grabbable.gd" id="1_mxbqw"]
-[ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/generator.png" id="1_oornm"]
-[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="2_805iw"]
-[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="2_dotky"]
-[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="3_2lbtu"]
-[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="4_wt1lk"]
-[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="5_jfd6e"]
-[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="6_m7n6y"]
+[ext_resource type="Script" path="res://scripts/Grabbable.gd" id="1_2tqtk"]
+[ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/items/generator.png" id="2_sk1m6"]
+[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="3_csog1"]
+[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="4_ebrln"]
+[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_tswjm"]
+[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_q63ve"]
+[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_jiuqm"]
+[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="8_cew17"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
 radius = 88.0
@@ -23,19 +23,19 @@ blend_mode = 1
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_dotky")
+"texture": ExtResource("3_csog1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_2lbtu")
+"texture": ExtResource("4_ebrln")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_wt1lk")
+"texture": ExtResource("5_tswjm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jfd6e")
+"texture": ExtResource("6_q63ve")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_m7n6y")
+"texture": ExtResource("7_jiuqm")
 }],
 "loop": true,
 "name": &"default",
@@ -43,10 +43,10 @@ animations = [{
 }]
 
 [node name="Generator" type="CharacterBody2D"]
-script = ExtResource("1_mxbqw")
+script = ExtResource("1_2tqtk")
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_oornm")
+texture = ExtResource("2_sk1m6")
 
 [node name="GeneratorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-16, 0)
@@ -75,6 +75,6 @@ show_behind_parent = true
 texture_repeat = 2
 position = Vector2(168, 48)
 skew = -0.0872664
-texture = ExtResource("2_805iw")
+texture = ExtResource("8_cew17")
 region_enabled = true
 region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)

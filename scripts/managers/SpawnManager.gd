@@ -3,7 +3,7 @@ extends Node
 @onready var cat = preload("res://scenes/cat.tscn")
 @onready var cat_colors: Array
 
-@onready var popup = preload("res://scenes/popup.tscn")
+@onready var popup = preload("res://scenes/UI/popup.tscn")
 
 @onready var level_reference
 
@@ -29,6 +29,14 @@ func spawn_cat():
 	var new_texture = cat_colors[randi_range(0, len(cat_colors))-1]
 	new_cat.get_node("Textures/CatSprite").material.set_shader_parameter("palette", load(new_texture))
 	level_reference.call_deferred("add_child", new_cat)
+	
+func spawn_grabbable_in_hand(item: PackedScene):
+	var new_item: Grabbable = item.instantiate()
+	# If already holding something, release
+	if MouseManager.grabbable != null:
+		MouseManager.grabbable.release()
+	level_reference.call_deferred("add_child", new_item)
+	new_item.grab()
 	
 func create_popup(pos, texture, text):
 	var new_popup = popup.instantiate()
