@@ -7,6 +7,13 @@ var grabbable = null
 @onready var cursor_grab = preload("res://textures/cursors/cursor_grab.png")
 @onready var cursor_pat = preload("res://textures/cursors/cursor_pat.png")
 
+@onready var camera_reference = null
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+func _physics_process(delta):
+	position = get_global_mouse_position()
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
@@ -18,7 +25,7 @@ func _input(event):
 				# Detect if clicked on grabbable
 				var space_state = get_world_2d().direct_space_state
 				var query = PhysicsPointQueryParameters2D.new()
-				query.position = get_viewport().get_mouse_position()
+				query.position = get_global_mouse_position()
 				var result = space_state.intersect_point(query)
 				# Grab
 				for collision in result:
@@ -28,15 +35,12 @@ func _input(event):
 				# Release grabbable
 				grabbable.release()
 		
-func pat():
-	# If not holding anything
-	if grabbable == null:
-		# Pat
-		Input.set_custom_mouse_cursor(cursor_pat)
-		get_tree().create_timer(0.25, true, true).timeout.connect(reset_cursor)
-		
+func grab_cursor():
+	$Cursor.play("grab")
+
+func pat_cursor():
+	$Cursor.play("pat")
+	
 func reset_cursor():
-	# If not holding anything
 	if grabbable == null:
-		# Default cursor
-		Input.set_custom_mouse_cursor(cursor_default)
+		$Cursor.play("default")

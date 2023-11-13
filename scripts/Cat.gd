@@ -65,7 +65,7 @@ func _on_pat_area_mouse_entered():
 	if MouseManager.grabbable == null and MouseManager.is_processing_input():
 		charge()
 		# Pat
-		MouseManager.pat()
+		MouseManager.pat_cursor()
 		
 func charge():
 	power_time += PowerManager.power_time_increment

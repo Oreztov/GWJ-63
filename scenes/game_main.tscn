@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwnd1m12iefli"]
+[gd_scene load_steps=7 format=3 uid="uid://dwnd1m12iefli"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/level.tscn" id="1_1mr68"]
 [ext_resource type="PackedScene" uid="uid://crc5ol4wp54lw" path="res://scenes/UI/hud.tscn" id="2_4udfk"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_yprvs"]
+[ext_resource type="Texture2D" uid="uid://dtlxf145it0w6" path="res://textures/bg/Poison_Dry-1280x720.png" id="4_rdojk"]
+[ext_resource type="Shader" path="res://shaders/blur_shader.gdshader" id="5_qp66p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcdpb"]
+shader = ExtResource("5_qp66p")
+shader_parameter/strength = 16
 
 [node name="game_main" type="Node2D"]
 
@@ -10,3 +17,29 @@
 [node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDCanvasLayer" instance=ExtResource("2_4udfk")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+limit_left = -100
+limit_top = -100
+limit_right = 4500
+limit_bottom = 1200
+position_smoothing_speed = 25.0
+editor_draw_limits = true
+script = ExtResource("3_yprvs")
+
+[node name="Background" type="Node2D" parent="."]
+show_behind_parent = true
+
+[node name="BG" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+position = Vector2(-1040, -320)
+texture = ExtResource("4_rdojk")
+
+[node name="BG2" type="Sprite2D" parent="Background/BG"]
+modulate = Color(1, 1, 1, 0.0745098)
+show_behind_parent = true
+texture_repeat = 2
+material = SubResource("ShaderMaterial_fcdpb")
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_rdojk")

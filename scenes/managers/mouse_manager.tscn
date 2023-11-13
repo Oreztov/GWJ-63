@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://drbynest8sok0"]
+[gd_scene load_steps=6 format=3 uid="uid://drbynest8sok0"]
 
 [ext_resource type="Script" path="res://scripts/managers/MouseManager.gd" id="1_0jxwa"]
+[ext_resource type="Texture2D" uid="uid://4nrwa7m0frdh" path="res://textures/cursors/cursor_new.png" id="2_ga54x"]
+[ext_resource type="Texture2D" uid="uid://dao8fjq8uxxio" path="res://textures/cursors/cursor_grab.png" id="3_3u25l"]
+[ext_resource type="Texture2D" uid="uid://c0bch570m2hui" path="res://textures/cursors/cursor_pat.png" id="4_dov2s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oif5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ga54x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3u25l")
+}],
+"loop": true,
+"name": &"grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dov2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ga54x")
+}],
+"loop": false,
+"name": &"pat",
+"speed": 3.0
+}]
 
 [node name="mouse_manager" type="Node2D"]
+z_index = 10
 script = ExtResource("1_0jxwa")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oif5y")

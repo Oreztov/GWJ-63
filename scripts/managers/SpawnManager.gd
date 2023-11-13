@@ -6,6 +6,7 @@ extends Node
 @onready var popup = preload("res://scenes/UI/popup.tscn")
 
 @onready var level_reference
+@onready var main_reference
 
 signal on_level_ready
 
@@ -44,7 +45,7 @@ func create_popup(pos, texture, text):
 	new_popup.texture = texture
 	new_popup.text = text
 	new_popup.create()
-	level_reference.call_deferred("add_child", new_popup)
+	main_reference.call_deferred("add_child", new_popup)
 	
 func get_files_in_folder(path, extension):
 	var temp_array = []
