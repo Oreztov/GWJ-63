@@ -61,6 +61,15 @@ layout_mode = 2
 texture = ExtResource("4_epr6o")
 expand_mode = 2
 
+[node name="Quantity" type="Label" parent="VBoxContainer/TextureRect/UsageContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x7"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/TextureRect/UsageContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Buy: XXXXX"

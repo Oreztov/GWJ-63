@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjns4ocojvbog"]
+[gd_scene load_steps=15 format=3 uid="uid://bjns4ocojvbog"]
 
 [ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
 [ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cats/cat_base.png" id="2_1blq3"]
 [ext_resource type="Shader" path="res://shaders/PaletteSwap.gdshader" id="2_hnpcm"]
-[ext_resource type="Texture2D" uid="uid://dpg0u0fsa07dj" path="res://textures/cats/cat_colors/cat_color_lut_1.png" id="3_4b5od"]
 [ext_resource type="Texture2D" uid="uid://b2x08qb867uex" path="res://textures/cats/cat_base_lut.png" id="4_dkuhs"]
 [ext_resource type="Texture2D" uid="uid://bxoje4gn2jpu0" path="res://textures/light.png" id="4_fuo88"]
 [ext_resource type="Texture2D" uid="uid://jrxinsu6jr8a" path="res://textures/cats/cat_eyes_closed_lut.png" id="5_wb8yo"]
@@ -18,7 +17,6 @@ shader = ExtResource("2_hnpcm")
 shader_parameter/skip_first_row = true
 shader_parameter/use_palette_alpha = false
 shader_parameter/fps = 6.0
-shader_parameter/palette = ExtResource("3_4b5od")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hrfad"]
 animations = [{

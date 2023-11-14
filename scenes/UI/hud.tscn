@@ -65,9 +65,10 @@ layout_mode = 2
 text = "/s"
 
 [node name="ShopButton" type="Button" parent="Topbar"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 10
-text = ">Shop<"
+text = ">Build<"
 
 [node name="VSeparator2" type="VSeparator" parent="Topbar"]
 layout_mode = 2
@@ -75,5 +76,16 @@ layout_mode = 2
 [node name="shop" parent="." instance=ExtResource("5_nphgn")]
 layout_mode = 1
 mouse_filter = 1
+
+[node name="Blackout" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="pressed" from="Topbar/ShopButton" to="." method="_on_shop_button_pressed"]

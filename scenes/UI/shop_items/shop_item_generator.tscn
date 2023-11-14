@@ -9,6 +9,7 @@ tooltip_text = "Extracts and collects power from cats in a certain area."
 power_cost = 50
 power_usage = 0.0
 item = ExtResource("2_72dry")
+quantity = 2
 
 [node name="Label" parent="VBoxContainer" index="0"]
 text = "Generator"

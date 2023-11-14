@@ -1,11 +1,12 @@
 extends Node2D
 
 # Initial Variables
-const power_init = 50.0
+const power_init = 50
 const usage_init = 0.5
 
 # Game Variables
 var power = power_init
+var power_min = -50
 var usage = usage_init # power per second
 
 # Initial Cat Power variables
@@ -33,6 +34,8 @@ signal usage_changed
 signal game_reset
 signal area_unlocked
 signal area_cost_updated
+signal lost_power
+signal regain_power
 
 func _ready():
 	reset()
@@ -48,7 +51,13 @@ func reset():
 	
 func change_power(value):
 	power += value
+	if power < power_min:
+		power = power_min
 	power_changed.emit()
+	if power <= 0:
+		lost_power.emit()
+	else:
+		regain_power.emit()
 	
 func change_usage(value):
 	usage += value
