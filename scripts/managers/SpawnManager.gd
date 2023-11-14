@@ -36,7 +36,7 @@ func spawn_grabbable_in_hand(item: PackedScene):
 	# If already holding something, release
 	if MouseManager.grabbable != null:
 		MouseManager.grabbable.release()
-	level_reference.call_deferred("add_child", new_item)
+	main_reference.call_deferred("add_child", new_item)
 	new_item.grab()
 	
 func create_popup(pos, texture, text):

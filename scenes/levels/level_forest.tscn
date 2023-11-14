@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ua44vsbkstaj"]
+
+[ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_n8nes"]
+[ext_resource type="Texture2D" uid="uid://baco5ii1nyoyp" path="res://textures/bg/Alpine_Dry-1280x720.png" id="2_63xxn"]
+
+[node name="LevelForest" instance=ExtResource("1_n8nes")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_63xxn")

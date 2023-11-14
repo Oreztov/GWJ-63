@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfwjlxdwp7aef"]
+
+[ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_ojav8"]
+[ext_resource type="Texture2D" uid="uid://ddxrwcvkp8ylf" path="res://textures/bg/Ice_Planet_Dry-1280x720.png" id="2_s853g"]
+
+[node name="LevelTundra" instance=ExtResource("1_ojav8")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_s853g")

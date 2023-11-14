@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd57ceki8jjri"]
+
+[ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_s5uj6"]
+[ext_resource type="Texture2D" uid="uid://dhcviblavwti7" path="res://textures/bg/Desert_Dry-1280x720.png" id="2_aocjj"]
+
+[node name="LevelSands" instance=ExtResource("1_s5uj6")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_aocjj")
