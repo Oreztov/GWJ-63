@@ -39,5 +39,9 @@ animations = [{
 z_index = 10
 script = ExtResource("1_0jxwa")
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 7
+follow_viewport_enabled = true
+
+[node name="Cursor" type="AnimatedSprite2D" parent="CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_oif5y")

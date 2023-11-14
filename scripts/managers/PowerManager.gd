@@ -20,16 +20,24 @@ var power_gain_time = power_gain_time_init
 var power_time_max = power_time_max_init
 var power_time_increment = power_time_increment_init
 
-
+# New Level Power Variables
+const initial_area_cost = 250
+var area_cost = initial_area_cost
+var area_cost_multiplier = 2
+var area_usage = 0.5
+var areas_unlocked = 0
 
 # Signals
 signal power_changed
 signal usage_changed
 signal game_reset
+signal area_unlocked
+signal area_cost_updated
 
 func _ready():
 	reset()
 	$UsageTimer.start()
+	area_unlocked.connect(unlock_area)
 
 # Reset game values to initial values
 func reset():
@@ -48,3 +56,11 @@ func change_usage(value):
 
 func _on_usage_timer_timeout():
 	change_power(-usage)
+	
+func unlock_area():
+	if areas_unlocked > 0:
+		change_power(-initial_area_cost)
+		change_usage(area_usage)
+		area_cost *= area_cost_multiplier
+		area_cost_updated.emit()
+	areas_unlocked += 1

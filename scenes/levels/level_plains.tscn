@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://byih5y66cukxd" path="res://textures/bg/Tropical_Dry-1280x720.png" id="2_3kf85"]
 
 [node name="LevelPlains" instance=ExtResource("1_11mn6")]
+area_name = "Paw Plains"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_3kf85")

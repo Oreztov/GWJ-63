@@ -96,6 +96,7 @@ _data = {
 }
 
 [node name="Popup" type="Node2D"]
+z_index = 2
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_wkt1u")
 

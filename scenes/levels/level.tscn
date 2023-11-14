@@ -1,6 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl1n5hla1lvfn"]
+[gd_scene load_steps=12 format=3 uid="uid://dl1n5hla1lvfn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c23ku"]
+[ext_resource type="Texture2D" uid="uid://m0k36chh2snf" path="res://textures/bg/border.png" id="2_8evvy"]
+[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="2_407sx"]
+[ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="3_dbki1"]
+[ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="4_7vmmw"]
+[ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="6_p8tg1"]
 
 [sub_resource type="Gradient" id="Gradient_d18a4"]
 
@@ -10,10 +15,23 @@ width = 1280
 height = 720
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yq1r3"]
-size = Vector2(1920, 200)
+size = Vector2(1920, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2rjp"]
-size = Vector2(200, 1080)
+size = Vector2(100, 1080)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdfde"]
+shader = ExtResource("2_407sx")
+shader_parameter/cloudscale = 1.1
+shader_parameter/speed = 0.02
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 0.485
+shader_parameter/cloudcover = 1.125
+shader_parameter/cloudalpha = 8.0
+shader_parameter/skytint = 0.425
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_c23ku")
@@ -24,7 +42,15 @@ texture = SubResource("GradientTexture2D_gfya6")
 centered = false
 metadata/_edit_lock_ = true
 
+[node name="Border" type="Sprite2D" parent="Background"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(2.667, 2.667)
+texture = ExtResource("2_8evvy")
+centered = false
+
 [node name="LevelBounds" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="TopBottomBoundary" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(960, 0)
@@ -41,3 +67,68 @@ shape = SubResource("RectangleShape2D_o2rjp")
 [node name="LeftRightBoundary2" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(0, 540)
 shape = SubResource("RectangleShape2D_o2rjp")
+
+[node name="Clouds" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gdfde")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+theme = ExtResource("3_dbki1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = -42.0
+offset_right = 111.5
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Blah Blah Blah"
+horizontal_alignment = 1
+
+[node name="UncoverButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_dbki1")
+text = "Uncover: XxX"
+icon = ExtResource("4_7vmmw")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0.5"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_p8tg1")
+expand_mode = 2
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/UncoverButton" to="." method="_on_uncover_button_pressed"]

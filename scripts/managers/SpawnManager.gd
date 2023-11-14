@@ -5,13 +5,14 @@ extends Node
 
 @onready var popup = preload("res://scenes/UI/popup.tscn")
 
-@onready var level_reference
 @onready var main_reference
 
 signal on_level_ready
 
 # Game Variables
-const cat_spawn_init = 7
+const cat_spawn_init = 5
+var cat_spawn = cat_spawn_init
+var cat_spawn_increase = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,17 +20,18 @@ func _ready():
 	cat_colors = get_files_in_folder("res://textures/cats/cat_colors", "png")
 	on_level_ready.connect(level_ready)
 	
-func level_ready():
-	for i in range(cat_spawn_init):
-		spawn_cat()
+func level_ready(level):
+	for i in range(cat_spawn):
+		spawn_cat(level)
+	cat_spawn += cat_spawn_increase
 	
-func spawn_cat():
+func spawn_cat(level):
 	var new_cat = cat.instantiate()
-	new_cat.global_position = Vector2(randi_range(0, 1920), randi_range(0, 1080))
+	new_cat.global_position = Vector2(randi_range(150, 1750), randi_range(150, 900))
 	# Random cat color
 	var new_texture = cat_colors[randi_range(0, len(cat_colors))-1]
 	new_cat.get_node("Textures/CatSprite").material.set_shader_parameter("palette", load(new_texture))
-	level_reference.call_deferred("add_child", new_cat)
+	level.call_deferred("add_child", new_cat)
 	
 func spawn_grabbable_in_hand(item: PackedScene):
 	var new_item: Grabbable = item.instantiate()

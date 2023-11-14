@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhcviblavwti7" path="res://textures/bg/Desert_Dry-1280x720.png" id="2_aocjj"]
 
 [node name="LevelSands" instance=ExtResource("1_s5uj6")]
+area_name = "Sleeping Sands"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_aocjj")

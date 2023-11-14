@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0p8ej2jab4s1" path="res://textures/bg/Tropical_Wet-1280x720.png" id="2_emtsq"]
 
 [node name="LevelWaters" instance=ExtResource("1_pe40t")]
+area_name = "Whisker Waters"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_emtsq")

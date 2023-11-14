@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxrwcvkp8ylf" path="res://textures/bg/Ice_Planet_Dry-1280x720.png" id="2_s853g"]
 
 [node name="LevelTundra" instance=ExtResource("1_ojav8")]
+area_name = "Tail Tundra"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_s853g")

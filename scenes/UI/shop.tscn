@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://btg2jwly16nqo"]
+[gd_scene load_steps=7 format=3 uid="uid://btg2jwly16nqo"]
 
 [ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="1_buukf"]
-[ext_resource type="PackedScene" uid="uid://63jxd13dps3a" path="res://scenes/UI/shop_items/shop_item.tscn" id="2_ktr2j"]
 [ext_resource type="Script" path="res://scripts/UI/shop.gd" id="2_mp2sx"]
 [ext_resource type="PackedScene" uid="uid://daaap8duxyee2" path="res://scenes/UI/shop_items/shop_item_generator.tscn" id="4_scg2x"]
 [ext_resource type="PackedScene" uid="uid://3mqn54no73l1" path="res://scenes/UI/shop_items/shop_item_food_machine.tscn" id="5_4oidq"]
@@ -63,9 +62,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 5
-
-[node name="ShopItem" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("2_ktr2j")]
-layout_mode = 2
 
 [node name="Generator" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("4_scg2x")]
 layout_mode = 2

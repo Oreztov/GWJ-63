@@ -74,6 +74,7 @@ radius = 20.0
 radius = 72.0
 
 [node name="Cat" type="CharacterBody2D" groups=["cats"]]
+z_index = 1
 collision_priority = 5.0
 input_pickable = true
 script = ExtResource("1_it10l")

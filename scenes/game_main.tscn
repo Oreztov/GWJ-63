@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwnd1m12iefli"]
+[gd_scene load_steps=14 format=3 uid="uid://dwnd1m12iefli"]
 
 [ext_resource type="PackedScene" uid="uid://crc5ol4wp54lw" path="res://scenes/UI/hud.tscn" id="2_4udfk"]
 [ext_resource type="PackedScene" uid="uid://tkg5ubfkb4yl" path="res://scenes/levels/level_plains.tscn" id="3_5upwy"]
@@ -8,12 +8,31 @@
 [ext_resource type="PackedScene" uid="uid://cxlcaipv7pddl" path="res://scenes/levels/level_waters.tscn" id="6_2exto"]
 [ext_resource type="PackedScene" uid="uid://ua44vsbkstaj" path="res://scenes/levels/level_forest.tscn" id="7_j633a"]
 [ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/items/generator.tscn" id="8_hkgwe"]
+[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="9_5okrn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0b8u"]
+shader = ExtResource("9_5okrn")
+shader_parameter/cloudscale = 1.1
+shader_parameter/speed = 0.02
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 0.485
+shader_parameter/cloudcover = 1.125
+shader_parameter/cloudalpha = 8.0
+shader_parameter/skytint = 0.425
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efa52"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltdd3"]
+size = Vector2(5760, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhfyi"]
+size = Vector2(1080, 3240)
 
 [node name="game_main" type="Node2D"]
-
-[node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="HUDCanvasLayer" instance=ExtResource("2_4udfk")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -25,19 +44,71 @@ position_smoothing_speed = 25.0
 editor_draw_limits = true
 script = ExtResource("3_yprvs")
 
-[node name="LevelPlains" parent="." instance=ExtResource("3_5upwy")]
+[node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LevelSands" parent="." instance=ExtResource("4_mdgm0")]
+[node name="HUD" parent="HUDCanvasLayer" instance=ExtResource("2_4udfk")]
+mouse_filter = 2
+
+[node name="Clouds" type="ColorRect" parent="."]
+z_index = -5
+material = SubResource("ShaderMaterial_j0b8u")
+offset_left = -2000.0
+offset_top = -1200.0
+offset_right = 4000.0
+offset_bottom = 2200.0
+mouse_filter = 2
+
+[node name="Levels" type="Node2D" parent="."]
+clip_children = 2
+
+[node name="LevelPlains" parent="Levels" instance=ExtResource("3_5upwy")]
+unlocked = true
+
+[node name="LevelSands" parent="Levels" instance=ExtResource("4_mdgm0")]
 position = Vector2(0, 1080)
 
-[node name="LevelTundra" parent="." instance=ExtResource("5_fyfjl")]
+[node name="LevelTundra" parent="Levels" instance=ExtResource("5_fyfjl")]
 position = Vector2(0, -1080)
 
-[node name="LevelWaters" parent="." instance=ExtResource("6_2exto")]
+[node name="LevelWaters" parent="Levels" instance=ExtResource("6_2exto")]
 position = Vector2(-1920, 0)
 
-[node name="LevelForest" parent="." instance=ExtResource("7_j633a")]
+[node name="LevelForest" parent="Levels" instance=ExtResource("7_j633a")]
 position = Vector2(1920, 0)
 
 [node name="Generator" parent="." instance=ExtResource("8_hkgwe")]
 position = Vector2(1224, 616)
+
+[node name="LevelBounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(-960, -540)
+shape = SubResource("RectangleShape2D_efa52")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(-960, 1620)
+shape = SubResource("RectangleShape2D_efa52")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(2880, 1620)
+shape = SubResource("RectangleShape2D_efa52")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(2880, -540)
+shape = SubResource("RectangleShape2D_efa52")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(960, -1620)
+shape = SubResource("RectangleShape2D_ltdd3")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(960, 2700)
+shape = SubResource("RectangleShape2D_ltdd3")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(-2460, 540)
+shape = SubResource("RectangleShape2D_nhfyi")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(4380, 540)
+shape = SubResource("RectangleShape2D_nhfyi")

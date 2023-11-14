@@ -9,11 +9,14 @@ var grabbable = null
 
 @onready var camera_reference = null
 
+signal zoom_changed
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	zoom_changed.connect(on_zoom_changed)
 
 func _physics_process(delta):
-	position = get_global_mouse_position()
+	$CanvasLayer/Cursor.position = get_global_mouse_position()
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
@@ -36,11 +39,14 @@ func _input(event):
 				grabbable.release()
 		
 func grab_cursor():
-	$Cursor.play("grab")
+	$CanvasLayer/Cursor.play("grab")
 
 func pat_cursor():
-	$Cursor.play("pat")
+	$CanvasLayer/Cursor.play("pat")
 	
 func reset_cursor():
 	if grabbable == null:
-		$Cursor.play("default")
+		$CanvasLayer/Cursor.play("default")
+		
+func on_zoom_changed():
+	$CanvasLayer/Cursor.scale = Vector2(1/camera_reference.zoom_single, 1/camera_reference.zoom_single)
