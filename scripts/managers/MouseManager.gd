@@ -13,6 +13,8 @@ signal zoom_changed
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	PowerManager.lost_power.connect(lose_power)
+	PowerManager.regain_power.connect(regain_power)
 	zoom_changed.connect(on_zoom_changed)
 
 func _physics_process(delta):
@@ -50,3 +52,9 @@ func reset_cursor():
 		
 func on_zoom_changed():
 	$CanvasLayer/Cursor.scale = Vector2(1/camera_reference.zoom_single, 1/camera_reference.zoom_single)
+	
+func lose_power():
+	$CanvasLayer/Cursor/Flashlight.show()
+
+func regain_power():
+	$CanvasLayer/Cursor/Flashlight.hide()

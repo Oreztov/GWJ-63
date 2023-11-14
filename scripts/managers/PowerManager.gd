@@ -54,7 +54,7 @@ func change_power(value):
 	if power < power_min:
 		power = power_min
 	power_changed.emit()
-	if power <= 0:
+	if power < 0:
 		lost_power.emit()
 	else:
 		regain_power.emit()
