@@ -1,13 +1,14 @@
 extends Node2D
 
 # Initial Variables
-const power_init = 50
+const power_init = 2550
 const usage_init = 0.5
 
 # Game Variables
 var power = power_init
-var power_min = -50
 var usage = usage_init # power per second
+var power_min_factor = 100
+var power_min = - usage * power_min_factor
 
 # Initial Cat Power variables
 const power_gain_init = 1
@@ -26,6 +27,7 @@ const initial_area_cost = 250
 var area_cost = initial_area_cost
 var area_cost_multiplier = 2
 var area_usage = 0.5
+var area_usage_multiplier = 2
 var areas_unlocked = 0
 
 # Signals
@@ -36,6 +38,7 @@ signal area_unlocked
 signal area_cost_updated
 signal lost_power
 signal regain_power
+signal restock_shop
 
 func _ready():
 	reset()
@@ -61,6 +64,7 @@ func change_power(value):
 	
 func change_usage(value):
 	usage += value
+	power_min = - usage * power_min_factor
 	usage_changed.emit()
 
 func _on_usage_timer_timeout():
@@ -71,5 +75,7 @@ func unlock_area():
 		change_power(-initial_area_cost)
 		change_usage(area_usage)
 		area_cost *= area_cost_multiplier
+		area_usage *= area_usage_multiplier
 		area_cost_updated.emit()
+		restock_shop.emit()
 	areas_unlocked += 1

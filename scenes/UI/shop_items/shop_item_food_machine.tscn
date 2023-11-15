@@ -9,6 +9,7 @@ tooltip_text = "Increases power gain from a cats output by 1."
 power_cost = 100
 power_usage = 1.0
 item = ExtResource("2_qjp7o")
+cost_multiplier = 2.5
 
 [node name="Label" parent="VBoxContainer" index="0"]
 text = "Food Dispenser"

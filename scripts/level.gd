@@ -17,6 +17,7 @@ func _ready():
 	
 func update_cost():
 	$CanvasLayer/Control/VBoxContainer/UncoverButton.text = "Uncover: " + str(PowerManager.area_cost)
+	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.text = str(PowerManager.area_usage)
 	
 func unlock():
 	unlocked = true

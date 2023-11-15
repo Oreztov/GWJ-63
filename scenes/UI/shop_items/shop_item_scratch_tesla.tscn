@@ -9,6 +9,7 @@ tooltip_text = "Charges cats within a certain area."
 power_cost = 150
 power_usage = 1.25
 item = ExtResource("2_ytqb8")
+cost_multiplier = 2.0
 
 [node name="Label" parent="VBoxContainer" index="0"]
 text = "Scratching Rod"
