@@ -73,13 +73,13 @@ columns = 5
 [node name="Generator" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("4_scg2x")]
 layout_mode = 2
 
+[node name="Mouse" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("6_17ym7")]
+layout_mode = 2
+
 [node name="FoodMachine" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("5_4oidq")]
 layout_mode = 2
 
 [node name="ScratchTesla" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("6_swt74")]
-layout_mode = 2
-
-[node name="Mouse" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("6_17ym7")]
 layout_mode = 2
 
 [node name="Litter" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("7_845wv")]

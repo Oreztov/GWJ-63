@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bsc51g8so4dn3" path="res://textures/items/mouse.png" id="3_3v644"]
 
 [node name="Mouse" instance=ExtResource("1_agwd7")]
-tooltip_text = "Attracts cats around it."
+tooltip_text = "Attracts cats around it. Wanders around slightly."
 power_cost = 50
 item = ExtResource("2_bqgwo")
 cost_multiplier = 2.0

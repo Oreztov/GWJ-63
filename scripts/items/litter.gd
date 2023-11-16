@@ -15,7 +15,7 @@ func _draw():
 
 func _on_litter_area_body_entered(body):
 	# Item entered area
-	if body.is_in_group("grabbables"):
+	if body.is_in_group("grabbables") and not body == self:
 			if body.item:
 				# If already in array, cancel
 				if items_array.find(body) != -1:
@@ -27,7 +27,7 @@ func _on_litter_area_body_entered(body):
 
 func _on_litter_area_body_exited(body):
 	# Item exited area
-	if body.is_in_group("grabbables"):
+	if body.is_in_group("grabbables") and not body == self:
 		if body.item:
 			items_array.erase(body)
 			body.reset_usage()

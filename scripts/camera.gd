@@ -19,11 +19,13 @@ func _input(event):
 	if event is InputEventMouseButton:
 		# Zoom in
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom_single += zoom_speed
-			position = get_global_mouse_position()
+			if zoom_single < zoom_min:
+				zoom_single += zoom_speed
+				position = get_global_mouse_position()
 		# Zoom out
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom_single -= zoom_speed
+			if zoom_single > zoom_max:
+				zoom_single -= zoom_speed
 		zoom_single = clamp(zoom_single, zoom_max, zoom_min)
 		zoom = Vector2(zoom_single, zoom_single)
 		MouseManager.zoom_changed.emit()

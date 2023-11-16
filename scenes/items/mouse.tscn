@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="6_y3d3y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk3uh"]
-radius = 17.5254
+radius = 24.0
 height = 96.87
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyb6v"]
@@ -51,7 +51,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_lvwyj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.8326
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gk3uh")
 
 [node name="AttractArea" type="Area2D" parent="." groups=["mouse"]]

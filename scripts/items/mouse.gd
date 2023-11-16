@@ -33,7 +33,7 @@ func _physics_process(delta):
 		velocity = direction * current_speed
 		# Slightly rotate
 		if velocity.y != 0:
-			rotation = (PI / 1500) * velocity.y
+			rotation = -(PI / 1500) * velocity.y
 		else:
 			rotation = 0
 		move_and_slide()
@@ -88,7 +88,11 @@ func new_move():
 				direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 180)))
 		direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 360)))
 	speed = randi_range(speed_min, speed_max)
-	
+	# Flip
+	if direction.x > 0:
+		$Sprite2D.flip_h = false
+	elif direction.x < 0:
+		$Sprite2D.flip_h = true
 	moves_current += 1
 	$Timers/MoveTimer.wait_time = randf_range(move_time_min, move_time_max)
 	$Timers/MoveTimer.start()

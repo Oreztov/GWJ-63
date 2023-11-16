@@ -43,6 +43,8 @@ animations = [{
 [node name="Litter" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_6ilj5")
+item = true
+usage = 0.5
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_fl6ms")
@@ -51,7 +53,7 @@ texture = ExtResource("2_fl6ms")
 position = Vector2(-8, 59)
 shape = SubResource("RectangleShape2D_fxq87")
 
-[node name="LitterArea" type="Area2D" parent="."]
+[node name="LitterArea" type="Area2D" parent="." groups=["litter"]]
 show_behind_parent = true
 position = Vector2(0, 80)
 scale = Vector2(2, 2)

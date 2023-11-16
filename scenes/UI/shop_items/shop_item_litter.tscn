@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://bbgj8raq18amg" path="res://textures/items/litter.png" id="3_vau27"]
 
 [node name="Litter" instance=ExtResource("1_ex3wk")]
-tooltip_text = "Reduces power usage of all items near it."
-power_cost = 1
+tooltip_text = "Reduces power usage of items near it. Does not stack."
+power_cost = 200
 item = ExtResource("2_d2iqv")
 cost_multiplier = 3.0
 
 [node name="Label" parent="VBoxContainer" index="0"]
-text = "Litter Servant"
+text = "Litter Cleaner"
 
 [node name="TextureRect" parent="VBoxContainer" index="2"]
 texture = ExtResource("3_vau27")
