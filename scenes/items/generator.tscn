@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://t0qjc1gj5u8x"]
+[gd_scene load_steps=12 format=3 uid="uid://t0qjc1gj5u8x"]
 
 [ext_resource type="Script" path="res://scripts/Grabbable.gd" id="1_2tqtk"]
 [ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/items/generator.png" id="2_sk1m6"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_tswjm"]
 [ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_q63ve"]
 [ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_jiuqm"]
-[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="8_cew17"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
 radius = 88.0
@@ -44,6 +43,7 @@ animations = [{
 
 [node name="Generator" type="CharacterBody2D"]
 script = ExtResource("1_2tqtk")
+item = true
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_sk1m6")
@@ -67,14 +67,3 @@ material = SubResource("CanvasItemMaterial_vd22r")
 sprite_frames = SubResource("SpriteFrames_sai71")
 autoplay = "default"
 frame_progress = 0.456281
-
-[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/AnimatedSprite2D"]
-visible = false
-modulate = Color(1, 1, 1, 0.643137)
-show_behind_parent = true
-texture_repeat = 2
-position = Vector2(168, 48)
-skew = -0.0872664
-texture = ExtResource("8_cew17")
-region_enabled = true
-region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)

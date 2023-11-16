@@ -17,6 +17,7 @@ var moves = 0
 var moves_current = 0
 
 var direction = Vector2.ZERO
+var mouse_reference = null
 
 # Cat Flags
 var is_moving = false
@@ -89,37 +90,40 @@ func _on_move_timer_timeout():
 		
 
 func new_move():
-	# Get possible directions
-	var direction_quadrants = [0, 1, 2, 3] # Top, Bottom, Left, Right
-	if $Raycasts/RayCastTop.is_colliding():
-		direction_quadrants.erase(0)
-		#print("top")
-	if $Raycasts/RayCastBottom.is_colliding():
-		direction_quadrants.erase(1)
-		#print("bottom")
-	if $Raycasts/RayCastLeft.is_colliding():
-		direction_quadrants.erase(2)
-		#print("left")
-	if $Raycasts/RayCastRight.is_colliding():
-		direction_quadrants.erase(3)
-		#print("right")
-	# New direction and speed
-	if len(direction_quadrants) != 0:
-		var direction_quadrant = direction_quadrants[randi_range(0, len(direction_quadrants)) - 1]
-		match direction_quadrant:
-			0:
-				# Top
-				direction = Vector2.UP.rotated(deg_to_rad(randi_range(-90, 90)))
-			1:
-				# Bottom
-				direction = Vector2.UP.rotated(deg_to_rad(randi_range(90, 270)))
-			2:
-				# Left
-				direction = Vector2.UP.rotated(deg_to_rad(randi_range(180, 360)))
-			3:
-				# Right
-				direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 180)))
-		direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 360)))
+	if mouse_reference == null:
+		# Get possible directions
+		var direction_quadrants = [0, 1, 2, 3] # Top, Bottom, Left, Right
+		if $Raycasts/RayCastTop.is_colliding():
+			direction_quadrants.erase(0)
+			#print("top")
+		if $Raycasts/RayCastBottom.is_colliding():
+			direction_quadrants.erase(1)
+			#print("bottom")
+		if $Raycasts/RayCastLeft.is_colliding():
+			direction_quadrants.erase(2)
+			#print("left")
+		if $Raycasts/RayCastRight.is_colliding():
+			direction_quadrants.erase(3)
+			#print("right")
+		# New direction and speed
+		if len(direction_quadrants) != 0:
+			var direction_quadrant = direction_quadrants[randi_range(0, len(direction_quadrants)) - 1]
+			match direction_quadrant:
+				0:
+					# Top
+					direction = Vector2.UP.rotated(deg_to_rad(randi_range(-90, 90)))
+				1:
+					# Bottom
+					direction = Vector2.UP.rotated(deg_to_rad(randi_range(90, 270)))
+				2:
+					# Left
+					direction = Vector2.UP.rotated(deg_to_rad(randi_range(180, 360)))
+				3:
+					# Right
+					direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 180)))
+			direction = Vector2.UP.rotated(deg_to_rad(randi_range(0, 360)))
+	else:
+		direction = (mouse_reference.global_position - global_position).normalized()
 	speed = randi_range(speed_min, speed_max)
 	
 	moves_current += 1
@@ -138,6 +142,9 @@ func _on_charge_area_area_entered(area):
 	if area.is_in_group("generator"):
 		in_generator = true
 		$Timers/PowerGainTimer.paused = false
+	# Entered mouse
+	elif area.is_in_group("mouse"):
+		mouse_reference = area.get_parent()
 
 
 func _on_charge_area_area_exited(area):
@@ -145,6 +152,9 @@ func _on_charge_area_area_exited(area):
 	if area.is_in_group("generator"):
 		in_generator = false
 		$Timers/PowerGainTimer.paused = true
+	# Exited mouse
+	elif area.is_in_group("mouse"):
+		mouse_reference = null
 
 
 func _on_blink_timer_timeout():

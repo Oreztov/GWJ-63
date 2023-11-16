@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwinfxdvkmtle"]
+
+[ext_resource type="PackedScene" uid="uid://63jxd13dps3a" path="res://scenes/UI/shop_items/shop_item.tscn" id="1_ex3wk"]
+[ext_resource type="PackedScene" uid="uid://bkofo107rw7qn" path="res://scenes/items/litter.tscn" id="2_d2iqv"]
+[ext_resource type="Texture2D" uid="uid://bbgj8raq18amg" path="res://textures/items/litter.png" id="3_vau27"]
+
+[node name="Litter" instance=ExtResource("1_ex3wk")]
+tooltip_text = "Reduces power usage of all items near it."
+power_cost = 1
+item = ExtResource("2_d2iqv")
+cost_multiplier = 3.0
+
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "Litter Servant"
+
+[node name="TextureRect" parent="VBoxContainer" index="2"]
+texture = ExtResource("3_vau27")

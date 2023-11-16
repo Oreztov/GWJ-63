@@ -7,9 +7,8 @@
 [node name="FoodMachine" instance=ExtResource("1_0ypf3")]
 tooltip_text = "Increases power gain from a cats output by 1."
 power_cost = 100
-power_usage = 1.0
 item = ExtResource("2_qjp7o")
-cost_multiplier = 2.5
+cost_multiplier = 4.0
 
 [node name="Label" parent="VBoxContainer" index="0"]
 text = "Food Dispenser"

@@ -24,7 +24,7 @@ func unlock():
 	$Clouds.hide()
 	$CanvasLayer/Control/VBoxContainer/UncoverButton.hide()
 	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.hide()
-	PowerManager.area_unlocked.emit()
+	PowerManager.area_unlocked.emit(self)
 	SpawnManager.on_level_ready.emit(self)
 
 func _on_uncover_button_pressed():

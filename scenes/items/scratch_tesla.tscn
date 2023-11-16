@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwgdqyyw716ci"]
+[gd_scene load_steps=14 format=3 uid="uid://bwgdqyyw716ci"]
 
 [ext_resource type="Script" path="res://scripts/items/scratch_tesla.gd" id="1_sicxx"]
 [ext_resource type="Texture2D" uid="uid://ca878h1mnlkbs" path="res://textures/items/scratch_tesla.png" id="2_kb6sb"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_33uqx"]
 [ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_ludj3"]
 [ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_u6m3i"]
-[ext_resource type="Texture2D" uid="uid://bymhgnmqs8ff0" path="res://textures/UI/grid.png" id="8_0f0tb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_he7nn"]
 radius = 48.0
@@ -52,6 +51,8 @@ animations = [{
 [node name="ScratchTesla" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_sicxx")
+item = true
+usage = 1.25
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_kb6sb")
@@ -78,22 +79,12 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_8oqit")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ChargeArea"]
+modulate = Color(0, 0, 1, 1)
 clip_children = 2
 material = SubResource("CanvasItemMaterial_vd22r")
 sprite_frames = SubResource("SpriteFrames_sai71")
 autoplay = "default"
 frame_progress = 0.456281
-
-[node name="ChargeAreaSprite" type="Sprite2D" parent="ChargeArea/AnimatedSprite2D"]
-visible = false
-modulate = Color(1, 1, 1, 0.643137)
-show_behind_parent = true
-texture_repeat = 2
-position = Vector2(168, 48)
-skew = -0.0872664
-texture = ExtResource("8_0f0tb")
-region_enabled = true
-region_rect = Rect2(-300.778, -148.378, 1056.81, 640.211)
 
 [node name="ChargeTimer" type="Timer" parent="."]
 process_callback = 0

@@ -39,6 +39,8 @@ func spawn_grabbable_in_hand(item: PackedScene):
 	if MouseManager.grabbable != null:
 		MouseManager.grabbable.release()
 	main_reference.call_deferred("add_child", new_item)
+	if new_item.usage != 0:
+		PowerManager.change_usage(new_item, new_item.usage)
 	new_item.grab()
 	
 func create_popup(pos, texture, text):

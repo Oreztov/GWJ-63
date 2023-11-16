@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://btg2jwly16nqo"]
+[gd_scene load_steps=9 format=3 uid="uid://btg2jwly16nqo"]
 
 [ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="1_buukf"]
 [ext_resource type="Script" path="res://scripts/UI/shop.gd" id="2_mp2sx"]
 [ext_resource type="PackedScene" uid="uid://daaap8duxyee2" path="res://scenes/UI/shop_items/shop_item_generator.tscn" id="4_scg2x"]
 [ext_resource type="PackedScene" uid="uid://3mqn54no73l1" path="res://scenes/UI/shop_items/shop_item_food_machine.tscn" id="5_4oidq"]
+[ext_resource type="PackedScene" uid="uid://6r0bjmu5hm3v" path="res://scenes/UI/shop_items/shop_item_mouse.tscn" id="6_17ym7"]
 [ext_resource type="PackedScene" uid="uid://dwli3kjfo7c30" path="res://scenes/UI/shop_items/shop_item_scratch_tesla.tscn" id="6_swt74"]
+[ext_resource type="PackedScene" uid="uid://bwinfxdvkmtle" path="res://scenes/UI/shop_items/shop_item_litter.tscn" id="7_845wv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptfsu"]
 bg_color = Color(0.807843, 0.807843, 0.807843, 0.45098)
@@ -75,6 +77,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ScratchTesla" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("6_swt74")]
+layout_mode = 2
+
+[node name="Mouse" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("6_17ym7")]
+layout_mode = 2
+
+[node name="Litter" parent="ShopContainer/ScrollContainer/GridContainer" instance=ExtResource("7_845wv")]
 layout_mode = 2
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

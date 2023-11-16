@@ -13,6 +13,8 @@ size = Vector2(288, 88)
 [node name="FoodMachine" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_stxl8")
+item = true
+usage = 1
 
 [node name="GeneratorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_8k56s")

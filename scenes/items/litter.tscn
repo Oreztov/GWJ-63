@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://bkofo107rw7qn"]
+
+[ext_resource type="Script" path="res://scripts/items/litter.gd" id="1_6ilj5"]
+[ext_resource type="Texture2D" uid="uid://bbgj8raq18amg" path="res://textures/items/litter.png" id="2_fl6ms"]
+[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="3_di4pb"]
+[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="4_6cs6b"]
+[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_pnlhe"]
+[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_kjmmh"]
+[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_bje6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxq87"]
+size = Vector2(288, 194)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oqit"]
+radius = 232.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vd22r"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sai71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_di4pb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6cs6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pnlhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kjmmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bje6u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Litter" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_6ilj5")
+
+[node name="GeneratorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_fl6ms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 59)
+shape = SubResource("RectangleShape2D_fxq87")
+
+[node name="LitterArea" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, 80)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LitterArea"]
+shape = SubResource("CircleShape2D_8oqit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LitterArea"]
+modulate = Color(0, 0.411765, 0.227451, 1)
+clip_children = 2
+material = SubResource("CanvasItemMaterial_vd22r")
+sprite_frames = SubResource("SpriteFrames_sai71")
+autoplay = "default"
+frame_progress = 0.456281
+
+[connection signal="body_entered" from="LitterArea" to="." method="_on_litter_area_body_entered"]
+[connection signal="body_exited" from="LitterArea" to="." method="_on_litter_area_body_exited"]

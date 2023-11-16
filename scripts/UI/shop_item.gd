@@ -1,7 +1,6 @@
 extends PanelContainer
 
 @export var power_cost = 10
-@export var power_usage = 0.5
 @export var item: PackedScene = null
 
 @export var quantity = 1
@@ -20,7 +19,6 @@ func buy():
 		return
 	# Change power values
 	PowerManager.change_power(-power_cost)
-	PowerManager.change_usage(power_usage)
 	power_cost *= cost_multiplier
 	power_cost = round(power_cost)
 	# Change UI elements
@@ -38,7 +36,10 @@ func update():
 		$VBoxContainer/Button.disabled = false
 	$VBoxContainer/Button.text = "Buy: " + str(power_cost)
 	$VBoxContainer/TextureRect/UsageContainer/Quantity.text = "x" + str(quantity)
-	$VBoxContainer/TextureRect/UsageContainer/UsageLabel.text = str(power_usage)
+	if item != null:
+		$VBoxContainer/TextureRect/UsageContainer/UsageLabel.text = str(item.instantiate().usage)
+	else:
+		$VBoxContainer/TextureRect/UsageContainer/UsageLabel.text = "0"
 	
 
 func _on_button_pressed():

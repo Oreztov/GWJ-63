@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://qmljjej8x66a"]
+
+[ext_resource type="Texture2D" uid="uid://bsc51g8so4dn3" path="res://textures/items/mouse.png" id="1_lvwyj"]
+[ext_resource type="Script" path="res://scripts/items/mouse.gd" id="1_ui7xw"]
+[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="2_ggefa"]
+[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="3_jotyg"]
+[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="4_43mv4"]
+[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="5_wm8lc"]
+[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="6_y3d3y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk3uh"]
+radius = 17.5254
+height = 96.87
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lyb6v"]
+radius = 232.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0uixs"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y03tp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ggefa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jotyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_43mv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wm8lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y3d3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Mouse" type="CharacterBody2D"]
+script = ExtResource("1_ui7xw")
+item = true
+usage = 0.25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_lvwyj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.8326
+shape = SubResource("CapsuleShape2D_gk3uh")
+
+[node name="AttractArea" type="Area2D" parent="." groups=["mouse"]]
+show_behind_parent = true
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttractArea"]
+shape = SubResource("CircleShape2D_lyb6v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttractArea"]
+modulate = Color(0, 1, 0, 1)
+material = SubResource("CanvasItemMaterial_0uixs")
+sprite_frames = SubResource("SpriteFrames_y03tp")
+autoplay = "default"
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="MoveWaitTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RayCastTop" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, -64)
+
+[node name="RayCastBottom" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 64)
+
+[node name="RayCastLeft" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(-64, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(64, 0)
+
+[connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]
