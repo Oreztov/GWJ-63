@@ -37,6 +37,7 @@ animations = [{
 }]
 
 [node name="mouse_manager" type="Node2D"]
+process_mode = 3
 z_index = 10
 script = ExtResource("1_0jxwa")
 

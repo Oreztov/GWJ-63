@@ -10,6 +10,9 @@ func _ready():
 	PowerManager.lost_power.connect(lose_power)
 	PowerManager.regain_power.connect(regain_power)
 	
+	$Menu.hide()
+	$Menu.paused.connect(on_pause)
+	
 func change_power():
 	$Topbar/PowerPanel/HBoxContainer/PowerLabel.text = str(floor(PowerManager.power))
 	
@@ -19,6 +22,12 @@ func change_usage():
 func reset():
 	change_power()
 	change_usage()
+
+func on_pause(paused: bool):
+	if paused:
+		if $shop.in_shop:
+			$shop.toggle_shop()
+	$Topbar/ShopButton.disabled = paused
 
 func lose_power():
 	var tween = get_tree().create_tween()
@@ -30,3 +39,7 @@ func regain_power():
 
 func _on_shop_button_pressed():
 	$shop.toggle_shop()
+
+
+func _on_menu_button_pressed():
+	$Menu.toggle_menu()

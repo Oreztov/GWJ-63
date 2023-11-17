@@ -9,6 +9,7 @@ func _ready():
 	PowerManager.area_cost_updated.connect(update_cost)
 	
 	$Clouds.visible = not unlocked
+	$LevelBounds/LevelBlock.disabled = unlocked
 	if unlocked:
 		unlock()
 	$CanvasLayer/Control/VBoxContainer/Label.text = area_name
@@ -22,6 +23,7 @@ func update_cost():
 func unlock():
 	unlocked = true
 	$Clouds.hide()
+	$LevelBounds/LevelBlock.disabled = true
 	$CanvasLayer/Control/VBoxContainer/UncoverButton.hide()
 	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.hide()
 	PowerManager.area_unlocked.emit(self)

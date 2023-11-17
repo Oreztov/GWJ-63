@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dl1n5hla1lvfn"]
+[gd_scene load_steps=13 format=3 uid="uid://dl1n5hla1lvfn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c23ku"]
 [ext_resource type="Texture2D" uid="uid://m0k36chh2snf" path="res://textures/bg/border.png" id="2_8evvy"]
@@ -19,6 +19,9 @@ size = Vector2(1920, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2rjp"]
 size = Vector2(100, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hfjr"]
+size = Vector2(1920, 1080)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdfde"]
 shader = ExtResource("2_407sx")
@@ -50,7 +53,6 @@ texture = ExtResource("2_8evvy")
 centered = false
 
 [node name="LevelBounds" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="TopBottomBoundary" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(960, 0)
@@ -67,6 +69,10 @@ shape = SubResource("RectangleShape2D_o2rjp")
 [node name="LeftRightBoundary2" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(0, 540)
 shape = SubResource("RectangleShape2D_o2rjp")
+
+[node name="LevelBlock" type="CollisionShape2D" parent="LevelBounds"]
+position = Vector2(960, 540)
+shape = SubResource("RectangleShape2D_6hfjr")
 
 [node name="Clouds" type="ColorRect" parent="."]
 visible = false
