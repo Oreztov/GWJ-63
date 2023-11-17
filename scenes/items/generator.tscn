@@ -1,45 +1,53 @@
-[gd_scene load_steps=12 format=3 uid="uid://t0qjc1gj5u8x"]
+[gd_scene load_steps=9 format=3 uid="uid://t0qjc1gj5u8x"]
 
 [ext_resource type="Script" path="res://scripts/Grabbable.gd" id="1_2tqtk"]
 [ext_resource type="Texture2D" uid="uid://d4f4cb7r558vh" path="res://textures/items/generator.png" id="2_sk1m6"]
-[ext_resource type="Texture2D" uid="uid://cdgvv86crek6v" path="res://textures/UI/circle_marker/circle1.png" id="3_csog1"]
-[ext_resource type="Texture2D" uid="uid://k4fdcioko486" path="res://textures/UI/circle_marker/circle2.png" id="4_ebrln"]
-[ext_resource type="Texture2D" uid="uid://457ojq6arvi7" path="res://textures/UI/circle_marker/circle3.png" id="5_tswjm"]
-[ext_resource type="Texture2D" uid="uid://coq2fgp3digkt" path="res://textures/UI/circle_marker/circle4.png" id="6_q63ve"]
-[ext_resource type="Texture2D" uid="uid://pygl0v8x8vfu" path="res://textures/UI/circle_marker/circle5.png" id="7_jiuqm"]
+[ext_resource type="Texture2D" uid="uid://bnyrvid1fxlf6" path="res://textures/items/circle_marker.png" id="3_sf4p4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqox0"]
 radius = 88.0
 height = 240.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8oqit"]
-radius = 232.0
+radius = 504.063
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vd22r"]
-blend_mode = 1
+[sub_resource type="Animation" id="Animation_762wk"]
+resource_name = "spin"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sai71"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_csog1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_ebrln")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_tswjm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_q63ve")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_jiuqm")
-}],
-"loop": true,
-"name": &"default",
-"speed": 30.0
-}]
+[sub_resource type="Animation" id="Animation_h6h03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xb4x7"]
+_data = {
+"RESET": SubResource("Animation_h6h03"),
+"spin": SubResource("Animation_762wk")
+}
 
 [node name="Generator" type="CharacterBody2D"]
 script = ExtResource("1_2tqtk")
@@ -54,16 +62,19 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nqox0")
 
 [node name="ChargeArea" type="Area2D" parent="." groups=["generator"]]
+modulate = Color(0, 1, 1, 1)
 show_behind_parent = true
 position = Vector2(104, 32)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
 shape = SubResource("CircleShape2D_8oqit")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ChargeArea"]
-clip_children = 2
-material = SubResource("CanvasItemMaterial_vd22r")
-sprite_frames = SubResource("SpriteFrames_sai71")
-autoplay = "default"
-frame_progress = 0.456281
+[node name="Sprite2D" type="Sprite2D" parent="ChargeArea"]
+texture = ExtResource("3_sf4p4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ChargeArea"]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_xb4x7")
+}

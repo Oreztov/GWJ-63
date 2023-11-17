@@ -60,6 +60,7 @@ theme_override_constants/separation = 16
 
 [node name="UsageLabel" type="Label" parent="VBoxContainer/TextureRect/UsageContainer"]
 layout_mode = 2
+tooltip_text = "Power Usage"
 text = "0.5"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/UsageContainer"]
@@ -70,6 +71,7 @@ expand_mode = 2
 [node name="Quantity" type="Label" parent="VBoxContainer/TextureRect/UsageContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+tooltip_text = "Amount Available"
 text = "x7"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/TextureRect/UsageContainer"]

@@ -10,7 +10,7 @@ func _physics_process(delta):
 func _draw():
 	for item in items_array:
 		if item.usage != 0:
-			draw_dashed_line(Vector2.ZERO, item.global_position - global_position, Color("00693a"), 20, 10)
+			draw_dashed_line(Vector2.ZERO, item.global_position - global_position, Color.YELLOW, 20, 10)
 
 
 func _on_litter_area_body_entered(body):

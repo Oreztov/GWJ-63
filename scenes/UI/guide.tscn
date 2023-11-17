@@ -1,0 +1,259 @@
+[gd_scene load_steps=13 format=3 uid="uid://biw61d00ktc15"]
+
+[ext_resource type="Theme" uid="uid://y7bqealur7af" path="res://resources/themes/menu_theme.tres" id="1_o1kse"]
+[ext_resource type="FontFile" uid="uid://bgobll5lhkjnf" path="res://fonts/static/PlaypenSans-ExtraBold.ttf" id="2_pjfvh"]
+[ext_resource type="Script" path="res://scripts/UI/guide.gd" id="2_trd5u"]
+[ext_resource type="Texture2D" uid="uid://cjxwbbcfryxhv" path="res://textures/UI/guide/controls1.png" id="3_uhahi"]
+[ext_resource type="Texture2D" uid="uid://cl125ltn8pdpt" path="res://textures/UI/guide/controls2.png" id="4_240sj"]
+[ext_resource type="Texture2D" uid="uid://bveuaykht8buf" path="res://textures/UI/guide/controls3.png" id="5_g5s16"]
+[ext_resource type="Texture2D" uid="uid://iofcjuj1p20g" path="res://textures/UI/guide/cats1.png" id="6_euak2"]
+[ext_resource type="Texture2D" uid="uid://dfsmr0bpbqu04" path="res://textures/UI/guide/progression1.png" id="6_fhxyt"]
+[ext_resource type="Texture2D" uid="uid://xo76glc3lxpy" path="res://textures/UI/guide/cats2.png" id="7_rjfkt"]
+[ext_resource type="Texture2D" uid="uid://xljovc3i8es6" path="res://textures/UI/guide/power1.png" id="9_q701v"]
+[ext_resource type="Texture2D" uid="uid://duv81re4kr4bo" path="res://textures/UI/guide/power2.png" id="10_e3x2c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fvk0m"]
+font = ExtResource("2_pjfvh")
+font_size = 52
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="guide" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o1kse")
+script = ExtResource("2_trd5u")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Row1" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+
+[node name="Category1" type="VBoxContainer" parent="Panel/Content/Row1"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Title1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Title1"]
+layout_mode = 2
+text = "Controls - Mouse only"
+label_settings = SubResource("LabelSettings_fvk0m")
+
+[node name="Content1" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="Section1" type="VBoxContainer" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row1/Category1/Content1/Section1"]
+layout_mode = 2
+texture = ExtResource("3_uhahi")
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Content1/Section1"]
+layout_mode = 2
+text = "Click on any item/cat to pick it up. Click again to release."
+autowrap_mode = 3
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="Section2" type="VBoxContainer" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row1/Category1/Content1/Section2"]
+layout_mode = 2
+texture = ExtResource("4_240sj")
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Content1/Section2"]
+layout_mode = 2
+text = "Click and drag to pan (move) the camera."
+autowrap_mode = 3
+
+[node name="VSeparator3" type="VSeparator" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="Section3" type="VBoxContainer" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row1/Category1/Content1/Section3"]
+layout_mode = 2
+texture = ExtResource("5_g5s16")
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Content1/Section3"]
+layout_mode = 2
+text = "Use the scroll wheel to zoom in/out."
+autowrap_mode = 3
+
+[node name="VSeparator4" type="VSeparator" parent="Panel/Content/Row1/Category1/Content1"]
+layout_mode = 2
+
+[node name="Category2" type="VBoxContainer" parent="Panel/Content/Row1"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row1/Category2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category2/Title1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category2/Title1"]
+layout_mode = 2
+text = "Progression"
+label_settings = SubResource("LabelSettings_fvk0m")
+
+[node name="Content1" type="HBoxContainer" parent="Panel/Content/Row1/Category2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category2/Content1"]
+layout_mode = 2
+
+[node name="Section1" type="VBoxContainer" parent="Panel/Content/Row1/Category2/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row1/Category2/Content1/Section1"]
+layout_mode = 2
+texture = ExtResource("6_fhxyt")
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category2/Content1/Section1"]
+layout_mode = 2
+text = "Use power to automate, uncover the planet, and thrive!"
+autowrap_mode = 3
+
+[node name="Row2" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+
+[node name="Category1" type="VBoxContainer" parent="Panel/Content/Row2"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row2/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row2/Category1/Title1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category1/Title1"]
+layout_mode = 2
+text = "Cats :3"
+label_settings = SubResource("LabelSettings_fvk0m")
+
+[node name="Content1" type="HBoxContainer" parent="Panel/Content/Row2/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row2/Category1/Content1"]
+layout_mode = 2
+
+[node name="Section1" type="VBoxContainer" parent="Panel/Content/Row2/Category1/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row2/Category1/Content1/Section1"]
+layout_mode = 2
+texture = ExtResource("6_euak2")
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category1/Content1/Section1"]
+layout_mode = 2
+text = "Pat a cat by hovering over it repeatedly, charging it."
+autowrap_mode = 3
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/Content/Row2/Category1/Content1"]
+layout_mode = 2
+
+[node name="Section2" type="VBoxContainer" parent="Panel/Content/Row2/Category1/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row2/Category1/Content1/Section2"]
+layout_mode = 2
+texture = ExtResource("7_rjfkt")
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category1/Content1/Section2"]
+layout_mode = 2
+text = "Cats close to a generator discharge, giving power."
+autowrap_mode = 3
+
+[node name="VSeparator3" type="VSeparator" parent="Panel/Content/Row2/Category1/Content1"]
+layout_mode = 2
+
+[node name="Category2" type="VBoxContainer" parent="Panel/Content/Row2"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row2/Category2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row2/Category2/Title1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category2/Title1"]
+layout_mode = 2
+text = "Power
+"
+label_settings = SubResource("LabelSettings_fvk0m")
+
+[node name="Content1" type="HBoxContainer" parent="Panel/Content/Row2/Category2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row2/Category2/Content1"]
+layout_mode = 2
+
+[node name="Section1" type="VBoxContainer" parent="Panel/Content/Row2/Category2/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row2/Category2/Content1/Section1"]
+layout_mode = 2
+texture = ExtResource("9_q701v")
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category2/Content1/Section1"]
+layout_mode = 2
+text = "Power is the essential resource. Going below 0 means a blackout."
+autowrap_mode = 3
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/Content/Row2/Category2/Content1"]
+layout_mode = 2
+
+[node name="Section2" type="VBoxContainer" parent="Panel/Content/Row2/Category2/Content1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Content/Row2/Category2/Content1/Section2"]
+layout_mode = 2
+texture = ExtResource("10_e3x2c")
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category2/Content1/Section2"]
+layout_mode = 2
+text = "Your base constantly usees power. Building can increase both power and usage."
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Close"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]

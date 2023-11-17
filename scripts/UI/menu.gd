@@ -8,6 +8,7 @@ var ingame = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ColorRect.hide()
+	$guide.hide()
 	if get_parent().name == "HUD":
 		$buttons/PlayButton.text = "Resume!"
 		ingame = true
@@ -26,7 +27,7 @@ func _on_play_button_pressed():
 
 
 func _on_help_button_pressed():
-	pass # Replace with function body.
+	$guide.toggle_guide()
 
 
 func _on_setting_button_pressed():

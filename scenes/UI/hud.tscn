@@ -28,10 +28,12 @@ offset_top = 32.0
 offset_right = 32.0
 offset_bottom = 96.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="PowerPanel" type="PanelContainer" parent="Topbar"]
 layout_mode = 2
 tooltip_text = "Available Power"
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Topbar/PowerPanel"]
 layout_mode = 2
@@ -51,6 +53,7 @@ layout_mode = 2
 [node name="UsagePanel" type="PanelContainer" parent="Topbar"]
 layout_mode = 2
 tooltip_text = "Power Usage (per second)"
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Topbar/UsagePanel"]
 layout_mode = 2
