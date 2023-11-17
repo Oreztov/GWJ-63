@@ -6,7 +6,7 @@
 
 [node name="Mouse" instance=ExtResource("1_agwd7")]
 tooltip_text = "Attracts cats around it. Wanders around slightly."
-power_cost = 50
+power_cost = 25
 item = ExtResource("2_bqgwo")
 cost_multiplier = 2.0
 

@@ -1,14 +1,14 @@
 extends Node2D
 
 # Initial Variables
-const power_init = 25
+const power_init = 252525
 const usage_init = 0
 
 # Game Variables
 var power = power_init
 var usage = usage_init # power per second
 var usage_users = {}
-var power_min_factor = 100
+var power_min_factor = 50
 var power_min = - usage * power_min_factor
 
 # Initial Cat Power variables

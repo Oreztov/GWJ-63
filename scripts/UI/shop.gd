@@ -9,7 +9,6 @@ func _ready():
 func toggle_shop():
 	in_shop = !in_shop
 	visible = in_shop
-	MouseManager.set_process_input(!in_shop)
 
 
 func _on_close_button_pressed():

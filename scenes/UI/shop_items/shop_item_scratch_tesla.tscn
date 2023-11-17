@@ -11,7 +11,7 @@ item = ExtResource("2_ytqb8")
 cost_multiplier = 2.5
 
 [node name="Label" parent="VBoxContainer" index="0"]
-text = "Scratching Rod"
+text = "Scratch Charger"
 
 [node name="TextureRect" parent="VBoxContainer" index="2"]
 texture = ExtResource("3_pftvl")

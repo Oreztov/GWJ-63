@@ -6,12 +6,19 @@ extends PanelContainer
 @export var quantity = 1
 @export var cost_multiplier = 1.5
 
+@export var unlocked = true
+@export var areas_to_unlock = 1
+
 signal item_bought
+
+@onready var locked_text = $Locked.tooltip_text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update()
 	PowerManager.restock_shop.connect(restock)
+	$Locked.tooltip_text = locked_text % areas_to_unlock
+	$Locked.visible = not unlocked
 
 func buy():
 	# Check if can buy
@@ -40,11 +47,22 @@ func update():
 		$VBoxContainer/TextureRect/UsageContainer/UsageLabel.text = str(item.instantiate().usage)
 	else:
 		$VBoxContainer/TextureRect/UsageContainer/UsageLabel.text = "0"
+		
+func update_locked():
+	if not unlocked:
+		areas_to_unlock -= 1
+		$Locked.tooltip_text = locked_text % areas_to_unlock
+		if areas_to_unlock <= 0:
+			unlocked = true
+			$Locked.hide()
 	
 
 func _on_button_pressed():
 	buy()
 	
 func restock():
-	quantity += 1
-	update()
+	if unlocked:
+		quantity += 1
+		update()
+	else:
+		update_locked()

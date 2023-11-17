@@ -31,6 +31,7 @@ grow_horizontal = 2
 
 [node name="PowerPanel" type="PanelContainer" parent="Topbar"]
 layout_mode = 2
+tooltip_text = "Available Power"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Topbar/PowerPanel"]
 layout_mode = 2
@@ -49,6 +50,7 @@ layout_mode = 2
 
 [node name="UsagePanel" type="PanelContainer" parent="Topbar"]
 layout_mode = 2
+tooltip_text = "Power Usage (per second)"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Topbar/UsagePanel"]
 layout_mode = 2
@@ -70,6 +72,7 @@ text = "/s"
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+tooltip_text = "Purchase and build useful items."
 text = ">Build< "
 
 [node name="VSeparator2" type="VSeparator" parent="Topbar"]
@@ -79,6 +82,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Pause the game."
 text = "|| Menu"
 
 [node name="VSeparator3" type="VSeparator" parent="Topbar"]

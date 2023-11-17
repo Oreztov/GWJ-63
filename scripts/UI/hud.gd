@@ -31,7 +31,7 @@ func on_pause(paused: bool):
 
 func lose_power():
 	var tween = get_tree().create_tween()
-	tween.tween_property($Blackout, "color", Color(1, 1, 1, 1), 1)
+	tween.tween_property($Blackout, "color", Color(1, 1, 1, 0.99), 1)
 
 func regain_power():
 	var tween = get_tree().create_tween()
