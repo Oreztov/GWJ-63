@@ -1,7 +1,6 @@
 extends Node
 
 @onready var cat = preload("res://scenes/cat.tscn")
-@onready var cat_colors: Array
 
 @onready var popup = preload("res://scenes/UI/popup.tscn")
 
@@ -17,20 +16,19 @@ var cat_spawn_increase = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cat_colors = get_files_in_folder("res://textures/cats/cat_colors", "png")
 	on_level_ready.connect(level_ready)
 	
-func level_ready(level):
+func level_ready(level, cat_colors):
 	for i in range(cat_spawn):
-		spawn_cat(level)
+		spawn_cat(level, cat_colors)
 	cat_spawn += cat_spawn_increase
 	
-func spawn_cat(level):
+func spawn_cat(level, cat_colors):
 	var new_cat = cat.instantiate()
 	new_cat.global_position = Vector2(randi_range(150, 1750), randi_range(150, 900))
 	# Random cat color
 	var new_texture = cat_colors[randi_range(0, len(cat_colors))-1]
-	new_cat.get_node("Textures/CatSprite").material.set_shader_parameter("palette", load(new_texture))
+	new_cat.get_node("Textures/CatSprite").material.set_shader_parameter("palette", new_texture)
 	level.call_deferred("add_child", new_cat)
 	
 func spawn_grabbable_in_hand(item: PackedScene):
@@ -50,22 +48,3 @@ func create_popup(pos, texture, text):
 	new_popup.text = text
 	new_popup.create()
 	main_reference.call_deferred("add_child", new_popup)
-	
-func get_files_in_folder(path, extension):
-	var temp_array = []
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			# Workaround for a Godot """"feature"""". Thanks Godot.
-			file_name = file_name.trim_suffix(".remap")
-			file_name = file_name.trim_suffix(".import")
-			
-			if not dir.current_is_dir() and file_name.get_extension() == extension:
-				temp_array.append(path + "/" + file_name)
-			file_name = dir.get_next()
-		return temp_array
-	else:
-		print("Failed to open directory!")
-		return

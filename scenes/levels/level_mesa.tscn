@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4nvder5nwhg3"]
+[gd_scene load_steps=7 format=3 uid="uid://b4nvder5nwhg3"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_aggp3"]
 [ext_resource type="Texture2D" uid="uid://dm162urmghei" path="res://textures/bg/Red_Planet_Dry-1280x720.png" id="2_eh4jo"]
+[ext_resource type="Texture2D" uid="uid://ve47vlt0itp" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_1.png" id="2_oak1q"]
+[ext_resource type="Texture2D" uid="uid://b2uqq3awrtne8" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_2.png" id="3_idf1c"]
+[ext_resource type="Texture2D" uid="uid://b320j3ydhs8la" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_3.png" id="4_1gf11"]
+[ext_resource type="Texture2D" uid="uid://7grob0k0ev2s" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_4.png" id="5_boplv"]
 
 [node name="LevelMesa" instance=ExtResource("1_aggp3")]
 area_name = "Meow Mesa"
 areas_to_unlock = 3
 available = false
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_oak1q"), ExtResource("3_idf1c"), ExtResource("4_1gf11"), ExtResource("5_boplv")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_eh4jo")

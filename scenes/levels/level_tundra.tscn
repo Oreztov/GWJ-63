@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfwjlxdwp7aef"]
+[gd_scene load_steps=10 format=3 uid="uid://dfwjlxdwp7aef"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_ojav8"]
+[ext_resource type="Texture2D" uid="uid://bhhgs2b2vsqi3" path="res://textures/cats/cat_colors/white/cat_color_lut_white_1.png" id="2_esk3l"]
 [ext_resource type="Texture2D" uid="uid://ddxrwcvkp8ylf" path="res://textures/bg/Ice_Planet_Dry-1280x720.png" id="2_s853g"]
+[ext_resource type="Texture2D" uid="uid://b80ndsi46g4f" path="res://textures/cats/cat_colors/white/cat_color_lut_white_7.png" id="2_ucn21"]
+[ext_resource type="Texture2D" uid="uid://qyhxm66n4a4m" path="res://textures/cats/cat_colors/white/cat_color_lut_white_2.png" id="3_6yn5q"]
+[ext_resource type="Texture2D" uid="uid://b01r82nr7ref0" path="res://textures/cats/cat_colors/white/cat_color_lut_white_3.png" id="4_ukfsn"]
+[ext_resource type="Texture2D" uid="uid://ccfvc3o8i2exv" path="res://textures/cats/cat_colors/white/cat_color_lut_white_4.png" id="5_j3nbe"]
+[ext_resource type="Texture2D" uid="uid://dvcykvm5d3oxl" path="res://textures/cats/cat_colors/white/cat_color_lut_white_5.png" id="6_tynaj"]
+[ext_resource type="Texture2D" uid="uid://cyx1lfqpdip3e" path="res://textures/cats/cat_colors/white/cat_color_lut_white_6.png" id="7_nuhs0"]
 
 [node name="LevelTundra" instance=ExtResource("1_ojav8")]
 area_name = "Tail Tundra"
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_esk3l"), ExtResource("3_6yn5q"), ExtResource("4_ukfsn"), ExtResource("5_j3nbe"), ExtResource("6_tynaj"), ExtResource("7_nuhs0"), ExtResource("2_ucn21")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_s853g")

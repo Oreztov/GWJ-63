@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://tkg5ubfkb4yl"]
+[gd_scene load_steps=8 format=3 uid="uid://tkg5ubfkb4yl"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_11mn6"]
 [ext_resource type="Texture2D" uid="uid://byih5y66cukxd" path="res://textures/bg/Tropical_Dry-1280x720.png" id="2_3kf85"]
+[ext_resource type="Texture2D" uid="uid://bcrl07u6sg64q" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_1.png" id="3_ggkk7"]
+[ext_resource type="Texture2D" uid="uid://ck4pgmr5yur3s" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_1.png" id="4_obdoo"]
+[ext_resource type="Texture2D" uid="uid://ve47vlt0itp" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_1.png" id="5_807ig"]
+[ext_resource type="Texture2D" uid="uid://dkmjbwr4cew83" path="res://textures/cats/cat_colors/black/cat_color_lut_black_1.png" id="5_ml0bi"]
+[ext_resource type="Texture2D" uid="uid://bhhgs2b2vsqi3" path="res://textures/cats/cat_colors/white/cat_color_lut_white_1.png" id="6_2uf7v"]
 
 [node name="LevelPlains" instance=ExtResource("1_11mn6")]
 area_name = "Paw Plains"
+cat_colors = Array[CompressedTexture2D]([ExtResource("5_ml0bi"), ExtResource("3_ggkk7"), ExtResource("4_obdoo"), ExtResource("5_807ig"), ExtResource("6_2uf7v")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_3kf85")

@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcu0arnvfefi2"]
+[gd_scene load_steps=9 format=3 uid="uid://dcu0arnvfefi2"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_n6gdb"]
 [ext_resource type="Texture2D" uid="uid://oxbhb28pbxgy" path="res://textures/bg/Moon_02-1280x720.png" id="2_u1qpm"]
+[ext_resource type="Texture2D" uid="uid://ck4pgmr5yur3s" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_1.png" id="2_vuhm7"]
+[ext_resource type="Texture2D" uid="uid://buexjl6isxxqj" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_2.png" id="3_jfc63"]
+[ext_resource type="Texture2D" uid="uid://banpyfo7aomsv" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_3.png" id="4_ec5p8"]
+[ext_resource type="Texture2D" uid="uid://b7fkmsrm8nxp0" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_4.png" id="5_4l2w6"]
+[ext_resource type="Texture2D" uid="uid://bxga17u61abl0" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_5.png" id="6_mqusd"]
+[ext_resource type="Texture2D" uid="uid://bbffe3mkbk3en" path="res://textures/cats/cat_colors/grey/cat_color_lut_grey_6.png" id="7_ubd7h"]
 
 [node name="LevelCrater" instance=ExtResource("1_n6gdb")]
 area_name = "Claw Crater"
 areas_to_unlock = 3
 available = false
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_vuhm7"), ExtResource("3_jfc63"), ExtResource("4_ec5p8"), ExtResource("5_4l2w6"), ExtResource("6_mqusd"), ExtResource("7_ubd7h")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_u1qpm")

@@ -4,6 +4,7 @@ extends Node2D
 @export var unlocked = false
 @export var areas_to_unlock = 0
 @export var available = true
+@export var cat_colors: Array[CompressedTexture2D]
 
 @onready var locked_text_init = $CanvasLayer/Control/Locked.tooltip_text
 
@@ -50,7 +51,7 @@ func unlock():
 	$CanvasLayer/Control/VBoxContainer/UncoverButton.hide()
 	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.hide()
 	PowerManager.area_unlocked.emit(self)
-	SpawnManager.on_level_ready.emit(self)
+	SpawnManager.on_level_ready.emit(self, cat_colors)
 
 func _on_uncover_button_pressed():
 	if PowerManager.power >= PowerManager.area_cost:

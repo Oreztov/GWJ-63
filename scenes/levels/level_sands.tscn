@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd57ceki8jjri"]
+[gd_scene load_steps=9 format=3 uid="uid://bd57ceki8jjri"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_s5uj6"]
 [ext_resource type="Texture2D" uid="uid://dhcviblavwti7" path="res://textures/bg/Desert_Dry-1280x720.png" id="2_aocjj"]
+[ext_resource type="Texture2D" uid="uid://bcrl07u6sg64q" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_1.png" id="2_lyd4i"]
+[ext_resource type="Texture2D" uid="uid://dpg0u0fsa07dj" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_2.png" id="3_pghoo"]
+[ext_resource type="Texture2D" uid="uid://ve47vlt0itp" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_1.png" id="4_pdhls"]
+[ext_resource type="Texture2D" uid="uid://b2uqq3awrtne8" path="res://textures/cats/cat_colors/orange/cat_color_lut_orange_2.png" id="5_2v203"]
+[ext_resource type="Texture2D" uid="uid://bhhgs2b2vsqi3" path="res://textures/cats/cat_colors/white/cat_color_lut_white_1.png" id="6_qeivu"]
+[ext_resource type="Texture2D" uid="uid://qyhxm66n4a4m" path="res://textures/cats/cat_colors/white/cat_color_lut_white_2.png" id="7_bjt3y"]
 
 [node name="LevelSands" instance=ExtResource("1_s5uj6")]
 area_name = "Sleeping Sands"
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_lyd4i"), ExtResource("3_pghoo"), ExtResource("4_pdhls"), ExtResource("5_2v203"), ExtResource("6_qeivu"), ExtResource("7_bjt3y")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_aocjj")

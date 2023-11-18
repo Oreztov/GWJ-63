@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxlcaipv7pddl"]
+[gd_scene load_steps=6 format=3 uid="uid://cxlcaipv7pddl"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_pe40t"]
+[ext_resource type="Texture2D" uid="uid://dkmjbwr4cew83" path="res://textures/cats/cat_colors/black/cat_color_lut_black_1.png" id="2_42cdv"]
 [ext_resource type="Texture2D" uid="uid://0p8ej2jab4s1" path="res://textures/bg/Tropical_Wet-1280x720.png" id="2_emtsq"]
+[ext_resource type="Texture2D" uid="uid://doelelbf86x1u" path="res://textures/cats/cat_colors/black/cat_color_lut_black_2.png" id="3_18bqa"]
+[ext_resource type="Texture2D" uid="uid://bndxmyelh2g0t" path="res://textures/cats/cat_colors/black/cat_color_lut_black_3.png" id="4_u37v6"]
 
 [node name="LevelWaters" instance=ExtResource("1_pe40t")]
 area_name = "Whisker Waters"
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_42cdv"), ExtResource("3_18bqa"), ExtResource("4_u37v6")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_emtsq")

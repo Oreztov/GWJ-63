@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ua44vsbkstaj"]
+[gd_scene load_steps=8 format=3 uid="uid://ua44vsbkstaj"]
 
 [ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_n8nes"]
 [ext_resource type="Texture2D" uid="uid://baco5ii1nyoyp" path="res://textures/bg/Alpine_Dry-1280x720.png" id="2_63xxn"]
+[ext_resource type="Texture2D" uid="uid://bcrl07u6sg64q" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_1.png" id="2_a1sgt"]
+[ext_resource type="Texture2D" uid="uid://dpg0u0fsa07dj" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_2.png" id="3_eqqxc"]
+[ext_resource type="Texture2D" uid="uid://be4o6pyrvvriv" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_3.png" id="4_qncay"]
+[ext_resource type="Texture2D" uid="uid://cx604kr7jl3u6" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_4.png" id="5_w22tu"]
+[ext_resource type="Texture2D" uid="uid://dab2k0ade6pc4" path="res://textures/cats/cat_colors/brown/cat_color_lut_brown_5.png" id="6_q3xsa"]
 
 [node name="LevelForest" instance=ExtResource("1_n8nes")]
 area_name = "Fur Forest"
+cat_colors = Array[CompressedTexture2D]([ExtResource("2_a1sgt"), ExtResource("3_eqqxc"), ExtResource("4_qncay"), ExtResource("5_w22tu"), ExtResource("6_q3xsa")])
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_63xxn")
