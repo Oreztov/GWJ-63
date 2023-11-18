@@ -81,6 +81,7 @@ func _on_pat_area_mouse_entered():
 		$Purr.stream_paused = false
 		is_purring = true
 		purr_time = 0
+		$Timers/PurrStopTimer.start(purr_time_max)
 		
 func charge():
 	power_time += PowerManager.power_time_increment
@@ -183,3 +184,7 @@ func _on_purr_finished():
 	$Purr.stream_paused = true
 	purr_time = 0
 	is_purring = false
+
+
+func _on_purr_stop_timer_timeout():
+	_on_purr_finished()

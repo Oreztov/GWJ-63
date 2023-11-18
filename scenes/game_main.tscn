@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwnd1m12iefli"]
+[gd_scene load_steps=16 format=3 uid="uid://dwnd1m12iefli"]
 
 [ext_resource type="PackedScene" uid="uid://crc5ol4wp54lw" path="res://scenes/UI/hud.tscn" id="2_4udfk"]
 [ext_resource type="PackedScene" uid="uid://tkg5ubfkb4yl" path="res://scenes/levels/level_plains.tscn" id="3_5upwy"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ua44vsbkstaj" path="res://scenes/levels/level_forest.tscn" id="7_j633a"]
 [ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/items/generator.tscn" id="8_hkgwe"]
 [ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="9_5okrn"]
+[ext_resource type="PackedScene" uid="uid://b4nvder5nwhg3" path="res://scenes/levels/level_mesa.tscn" id="9_blu77"]
+[ext_resource type="PackedScene" uid="uid://dcu0arnvfefi2" path="res://scenes/levels/level_crater.tscn" id="10_vfmcb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j0b8u"]
 shader = ExtResource("9_5okrn")
@@ -47,6 +49,7 @@ script = ExtResource("3_yprvs")
 [node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDCanvasLayer" instance=ExtResource("2_4udfk")]
+visible = false
 mouse_filter = 2
 
 [node name="Clouds" type="ColorRect" parent="."]
@@ -76,21 +79,19 @@ position = Vector2(-1920, 0)
 [node name="LevelForest" parent="Levels" instance=ExtResource("7_j633a")]
 position = Vector2(1920, 0)
 
+[node name="LevelMesa" parent="Levels" instance=ExtResource("9_blu77")]
+position = Vector2(1920, 1080)
+
+[node name="LevelCrater" parent="Levels" instance=ExtResource("10_vfmcb")]
+position = Vector2(-1920, -1080)
+
 [node name="Generator" parent="." instance=ExtResource("8_hkgwe")]
 position = Vector2(1224, 616)
 
 [node name="LevelBounds" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBounds"]
-position = Vector2(-960, -540)
-shape = SubResource("RectangleShape2D_efa52")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(-960, 1620)
-shape = SubResource("RectangleShape2D_efa52")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBounds"]
-position = Vector2(2880, 1620)
 shape = SubResource("RectangleShape2D_efa52")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelBounds"]

@@ -2,6 +2,10 @@ extends Node2D
 
 @export var area_name = "bruh"
 @export var unlocked = false
+@export var areas_to_unlock = 0
+@export var available = true
+
+@onready var locked_text_init = $CanvasLayer/Control/Locked.tooltip_text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,8 +21,27 @@ func _ready():
 	$CanvasLayer/Control.position = global_position
 	
 func update_cost():
-	$CanvasLayer/Control/VBoxContainer/UncoverButton.text = "Uncover: " + str(PowerManager.area_cost)
-	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.text = str(PowerManager.area_usage)
+	areas_to_unlock -= 1
+	if areas_to_unlock <= 0:
+		available = true
+	if not unlocked:
+		if available:
+			set_available()
+			$CanvasLayer/Control/VBoxContainer/UncoverButton.text = "Uncover: " + str(PowerManager.area_cost)
+			$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.text = str(PowerManager.area_usage)
+		else:
+			set_locked()
+	
+func set_locked():
+	$CanvasLayer/Control/Locked.show()
+	$CanvasLayer/Control/Locked.tooltip_text = locked_text_init % areas_to_unlock
+	$CanvasLayer/Control/VBoxContainer/UncoverButton.hide()
+	$CanvasLayer/Control/VBoxContainer/HBoxContainer.hide()
+	
+func set_available():
+	$CanvasLayer/Control/Locked.hide()
+	$CanvasLayer/Control/VBoxContainer/UncoverButton.show()
+	$CanvasLayer/Control/VBoxContainer/HBoxContainer.show()
 	
 func unlock():
 	unlocked = true

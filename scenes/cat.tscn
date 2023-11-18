@@ -192,6 +192,10 @@ autostart = true
 [node name="BlinkTimer" type="Timer" parent="Timers"]
 process_callback = 0
 
+[node name="PurrStopTimer" type="Timer" parent="Timers"]
+process_callback = 0
+one_shot = true
+
 [node name="Purr" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kq332")
 volume_db = 5.0
@@ -204,4 +208,5 @@ bus = &"SFX"
 [connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]
 [connection signal="timeout" from="Timers/PowerGainTimer" to="." method="_on_power_gain_timer_timeout"]
 [connection signal="timeout" from="Timers/BlinkTimer" to="." method="_on_blink_timer_timeout"]
+[connection signal="timeout" from="Timers/PurrStopTimer" to="." method="_on_purr_stop_timer_timeout"]
 [connection signal="finished" from="Purr" to="." method="_on_purr_finished"]

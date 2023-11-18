@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4nvder5nwhg3"]
+
+[ext_resource type="PackedScene" uid="uid://dl1n5hla1lvfn" path="res://scenes/levels/level.tscn" id="1_aggp3"]
+[ext_resource type="Texture2D" uid="uid://dm162urmghei" path="res://textures/bg/Red_Planet_Dry-1280x720.png" id="2_eh4jo"]
+
+[node name="LevelMesa" instance=ExtResource("1_aggp3")]
+area_name = "Meow Mesa"
+areas_to_unlock = 3
+available = false
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_eh4jo")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl1n5hla1lvfn"]
+[gd_scene load_steps=15 format=3 uid="uid://dl1n5hla1lvfn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c23ku"]
 [ext_resource type="Texture2D" uid="uid://m0k36chh2snf" path="res://textures/bg/border.png" id="2_8evvy"]
 [ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="2_407sx"]
 [ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="3_dbki1"]
 [ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="4_7vmmw"]
+[ext_resource type="FontFile" uid="uid://cq0cpphi3m2it" path="res://fonts/static/PlaypenSans-SemiBold.ttf" id="4_f33tw"]
 [ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="6_p8tg1"]
 
 [sub_resource type="Gradient" id="Gradient_d18a4"]
@@ -35,6 +36,13 @@ shader_parameter/skytint = 0.425
 shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
 shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
 shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_18wnp"]
+font = ExtResource("4_f33tw")
+font_size = 124
+font_color = Color(1, 0, 0, 1)
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_c23ku")
@@ -114,6 +122,7 @@ text = "Blah Blah Blah"
 horizontal_alignment = 1
 
 [node name="UncoverButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_dbki1")
@@ -124,6 +133,7 @@ vertical_icon_alignment = 2
 expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -136,5 +146,32 @@ horizontal_alignment = 1
 layout_mode = 2
 texture = ExtResource("6_p8tg1")
 expand_mode = 2
+
+[node name="Locked" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Uncover %s more areas to unlock."
+color = Color(0, 0, 0, 0.498039)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Locked"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -108.0
+offset_right = 42.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+label_settings = SubResource("LabelSettings_18wnp")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/UncoverButton" to="." method="_on_uncover_button_pressed"]

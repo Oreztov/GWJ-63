@@ -8,3 +8,12 @@ area_name = "Paw Plains"
 
 [node name="Background" parent="." index="0"]
 texture = ExtResource("2_3kf85")
+
+[node name="UncoverButton" parent="CanvasLayer/Control/VBoxContainer" index="1"]
+visible = true
+
+[node name="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer" index="2"]
+visible = true
+
+[node name="Locked" parent="CanvasLayer/Control" index="1"]
+visible = false

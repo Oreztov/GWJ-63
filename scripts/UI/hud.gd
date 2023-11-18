@@ -2,6 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	show()
 	reset()
 	# Connect signals
 	PowerManager.power_changed.connect(change_power)
