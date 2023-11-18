@@ -194,6 +194,7 @@ process_callback = 0
 
 [node name="Purr" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kq332")
+volume_db = 5.0
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]

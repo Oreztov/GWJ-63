@@ -68,7 +68,7 @@ func _physics_process(delta):
 		$Textures/CatLight.modulate.a = 0
 	if is_purring:
 		purr_time += delta
-		$Purr.volume_db = lerp(0, -50, purr_time/purr_time_max)
+		$Purr.volume_db = lerp(5, -50, purr_time/purr_time_max)
 		if purr_time >= purr_time_max:
 			_on_purr_finished()
 
