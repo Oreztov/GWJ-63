@@ -1,6 +1,7 @@
 extends Node2D
 
 var grabbable = null
+var in_menu = true
 
 # Cursor images
 @onready var cursor_default = preload("res://textures/cursors/cursor_new.png")
@@ -12,7 +13,7 @@ var grabbable = null
 signal zoom_changed
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	set_menu()
 	PowerManager.lost_power.connect(lose_power)
 	PowerManager.regain_power.connect(regain_power)
 	zoom_changed.connect(on_zoom_changed)
@@ -58,3 +59,19 @@ func lose_power():
 
 func regain_power():
 	$CanvasLayer/Cursor/Flashlight.hide()
+	
+func menu_enter():
+	in_menu = true
+	set_menu()
+
+func menu_exit():
+	in_menu = false
+	set_menu()
+	
+func set_menu():
+	if in_menu:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		$CanvasLayer/Cursor.hide()
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		$CanvasLayer/Cursor.show()

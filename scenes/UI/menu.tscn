@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c83lmhytj2iiq"]
+[gd_scene load_steps=6 format=3 uid="uid://c83lmhytj2iiq"]
 
 [ext_resource type="Theme" uid="uid://y7bqealur7af" path="res://resources/themes/menu_theme.tres" id="1_3i63r"]
 [ext_resource type="Script" path="res://scripts/UI/menu.gd" id="2_2im66"]
 [ext_resource type="Texture2D" uid="uid://cdxcnsjow7amy" path="res://textures/UI/logo.png" id="2_qj027"]
 [ext_resource type="PackedScene" uid="uid://biw61d00ktc15" path="res://scenes/UI/guide.tscn" id="4_xgai5"]
+[ext_resource type="PackedScene" uid="uid://cwubi016bcp85" path="res://scenes/UI/settings.tscn" id="5_cxq3v"]
 
 [node name="Menu" type="Panel"]
 process_mode = 3
@@ -45,28 +46,32 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="buttons"]
 layout_mode = 2
-text = "Play!"
+tooltip_text = "Play the game."
+text = "Start!"
 
 [node name="HSeparator" type="HSeparator" parent="buttons"]
 layout_mode = 2
 
 [node name="HelpButton" type="Button" parent="buttons"]
 layout_mode = 2
-text = "Guide"
+tooltip_text = "Read a short guide for the game."
+text = "How to Play"
 
 [node name="HSeparator2" type="HSeparator" parent="buttons"]
 layout_mode = 2
 
 [node name="SettingButton" type="Button" parent="buttons"]
 layout_mode = 2
-text = "Settings"
+tooltip_text = "Settings, credits and more extras."
+text = "Settings & More"
 
 [node name="HSeparator3" type="HSeparator" parent="buttons"]
 layout_mode = 2
 
 [node name="QuitButton" type="Button" parent="buttons"]
 layout_mode = 2
-text = "Quit"
+tooltip_text = "Quit the game."
+text = "Quit :("
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -4
@@ -77,8 +82,18 @@ offset_right = 1716.0
 offset_bottom = 1096.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.498039)
+metadata/_edit_lock_ = true
 
 [node name="guide" parent="." instance=ExtResource("4_xgai5")]
+visible = false
+layout_mode = 1
+offset_left = -376.0
+offset_top = -204.0
+offset_right = 376.0
+offset_bottom = 204.0
+
+[node name="settings" parent="." instance=ExtResource("5_cxq3v")]
+visible = false
 layout_mode = 1
 offset_left = -376.0
 offset_top = -204.0

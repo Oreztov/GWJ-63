@@ -1,0 +1,192 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwubi016bcp85"]
+
+[ext_resource type="Theme" uid="uid://y7bqealur7af" path="res://resources/themes/menu_theme.tres" id="1_f62oj"]
+[ext_resource type="FontFile" uid="uid://bgobll5lhkjnf" path="res://fonts/static/PlaypenSans-ExtraBold.ttf" id="2_7hye2"]
+[ext_resource type="Script" path="res://scripts/UI/guide.gd" id="2_quq76"]
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://game_settings/components/slider/slider.tscn" id="3_an8tf"]
+[ext_resource type="Resource" uid="uid://duune8tj0hyqa" path="res://game_settings/settings/audio/master.tres" id="5_bqmv5"]
+[ext_resource type="Resource" uid="uid://d1eopju0s06ar" path="res://game_settings/settings/audio/music.tres" id="6_cfa6j"]
+[ext_resource type="Resource" uid="uid://dxwdbg7e8bcww" path="res://game_settings/settings/audio/sfx.tres" id="7_68fg6"]
+[ext_resource type="FontFile" uid="uid://cq0cpphi3m2it" path="res://fonts/static/PlaypenSans-SemiBold.ttf" id="7_nti7g"]
+[ext_resource type="Texture2D" uid="uid://caev5v5wx44xw" path="res://textures/travel.png" id="8_tsfas"]
+[ext_resource type="Texture2D" uid="uid://ca0dlc7dvcsgh" path="res://textures/GWJ-Full-Logo-tag-4k.png" id="9_bhaa0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwotl"]
+font = ExtResource("2_7hye2")
+font_size = 52
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7la4e"]
+font = ExtResource("7_nti7g")
+font_size = 42
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_f62oj")
+script = ExtResource("2_quq76")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Row1" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+
+[node name="Category1" type="VBoxContainer" parent="Panel/Content/Row1"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Title1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Title1"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_jwotl")
+
+[node name="Setting1" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Setting1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Setting1"]
+layout_mode = 2
+text = "Master Volume "
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting1" instance=ExtResource("3_an8tf")]
+layout_mode = 2
+setting = ExtResource("5_bqmv5")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting1/Slider" index="0"]
+custom_minimum_size = Vector2(500, 0)
+
+[node name="Setting2" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Setting2"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Setting2"]
+layout_mode = 2
+text = "Music Volume "
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting2" instance=ExtResource("3_an8tf")]
+layout_mode = 2
+setting = ExtResource("6_cfa6j")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting2/Slider" index="0"]
+custom_minimum_size = Vector2(500, 0)
+
+[node name="Setting3" type="HBoxContainer" parent="Panel/Content/Row1/Category1"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row1/Category1/Setting3"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row1/Category1/Setting3"]
+layout_mode = 2
+text = "SFX Volume "
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting3" instance=ExtResource("3_an8tf")]
+layout_mode = 2
+setting = ExtResource("7_68fg6")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" parent="Panel/Content/Row1/Category1/Setting3/Slider" index="0"]
+custom_minimum_size = Vector2(500, 0)
+
+[node name="Row2" type="HBoxContainer" parent="Panel/Content"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel/Content/Row2"]
+layout_mode = 2
+
+[node name="Category1" type="VBoxContainer" parent="Panel/Content/Row2"]
+layout_mode = 2
+
+[node name="Title1" type="HBoxContainer" parent="Panel/Content/Row2/Category1"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Content/Row2/Category1/Title1"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_jwotl")
+
+[node name="Label" type="Label" parent="Panel/Content/Row2/Category1"]
+layout_mode = 2
+text = "- Created by Oreztov, for the Godot Wild Jam #63!
+With additional assets by:"
+label_settings = SubResource("LabelSettings_7la4e")
+
+[node name="Label2" type="Label" parent="Panel/Content/Row2/Category1"]
+layout_mode = 2
+text = "- \"Oasis\" Music by Flowerhead
+- \"Planet Surface Backgrounds\" Textures by Screaming Brain Studios
+- \"Godot Game Settings\" Plugin by PunchablePlushie
+- \"Playpen Sans\" Font by The Playpen Sans Project Authors
+- \"Palette Swap\" Shader by KoBeWi
+- \"Cloudy Skies\" Shader by Tsar333 on godotshaders.com"
+
+[node name="CloseButton" type="Button" parent="Panel/Content"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 36
+text = "Close"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Travel" type="Sprite2D" parent="Control"]
+position = Vector2(1616, 744)
+scale = Vector2(0.405555, 0.405555)
+texture = ExtResource("8_tsfas")
+
+[node name="Gwj-full-logo-tag-4k" type="Sprite2D" parent="Control"]
+position = Vector2(1616, 288)
+scale = Vector2(0.337111, 0.337111)
+texture = ExtResource("9_bhaa0")
+
+[connection signal="pressed" from="Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]
+
+[editable path="Panel/Content/Row1/Category1/Setting1/Slider"]
+[editable path="Panel/Content/Row1/Category1/Setting2/Slider"]
+[editable path="Panel/Content/Row1/Category1/Setting3/Slider"]

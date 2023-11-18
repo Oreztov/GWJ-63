@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3061x1uvjvxh"]
+
+[ext_resource type="AudioStream" uid="uid://b0wpuv0nx81wx" path="res://sounds/music/flowerhead - Oasis.ogg" id="1_r7hpq"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_r7hpq")
+autoplay = true
+bus = &"Music"

@@ -253,7 +253,4 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Close"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-
 [connection signal="pressed" from="Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]

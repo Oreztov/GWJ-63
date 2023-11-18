@@ -12,6 +12,7 @@ func _ready():
 	
 	$Menu.hide()
 	$Menu.paused.connect(on_pause)
+	MouseManager.menu_exit()
 	
 func change_power():
 	$Topbar/PowerPanel/HBoxContainer/PowerLabel.text = str(floor(PowerManager.power))

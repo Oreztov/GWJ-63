@@ -11,6 +11,7 @@ var wait_time_min = 1.5
 var wait_time_max = 3.0
 var blink_time_min = 3
 var blink_time_max = 6
+var purr_time_max = 1
 
 var speed = 0
 var moves = 0
@@ -23,8 +24,10 @@ var mouse_reference = null
 var is_moving = false
 var in_generator = false
 var in_scratcher = false
+var is_purring = false
 
 var power_time = 0
+var purr_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +38,9 @@ func _ready():
 	$Timers/BlinkTimer.start()
 	$Timers/PowerGainTimer.wait_time = PowerManager.power_gain_time
 	$Timers/PowerGainTimer.paused = true
+	
+	_on_purr_finished()
+	
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,6 +66,11 @@ func _physics_process(delta):
 		$Textures/CatLight.modulate.a = power_progress + 0.1
 	else:
 		$Textures/CatLight.modulate.a = 0
+	if is_purring:
+		purr_time += delta
+		$Purr.volume_db = lerp(0, -50, purr_time/purr_time_max)
+		if purr_time >= purr_time_max:
+			_on_purr_finished()
 
 func _on_pat_area_mouse_entered():
 	# If not holding anything and available
@@ -67,6 +78,9 @@ func _on_pat_area_mouse_entered():
 		charge()
 		# Pat
 		MouseManager.pat_cursor()
+		$Purr.stream_paused = false
+		is_purring = true
+		purr_time = 0
 		
 func charge():
 	power_time += PowerManager.power_time_increment
@@ -162,3 +176,10 @@ func _on_blink_timer_timeout():
 	$Textures/CatSprite.play("eyes_closed")
 	$Textures/CatHighlights.stop()
 	$Textures/CatHighlights.play("eyes_closed")
+
+
+func _on_purr_finished():
+	$Purr.play()
+	$Purr.stream_paused = true
+	purr_time = 0
+	is_purring = false

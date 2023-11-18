@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjns4ocojvbog"]
+[gd_scene load_steps=18 format=3 uid="uid://bjns4ocojvbog"]
 
 [ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
 [ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cats/cat_base.png" id="2_1blq3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bxoje4gn2jpu0" path="res://textures/light.png" id="4_fuo88"]
 [ext_resource type="Texture2D" uid="uid://jrxinsu6jr8a" path="res://textures/cats/cat_eyes_closed_lut.png" id="5_wb8yo"]
 [ext_resource type="Texture2D" uid="uid://b65c7mpcyn7kw" path="res://textures/cats/cat_eyes_closed.png" id="7_xm0vm"]
+[ext_resource type="AudioStream" uid="uid://cudo0uncajtep" path="res://sounds/cats/purr1.ogg" id="8_ceg67"]
+[ext_resource type="AudioStream" uid="uid://nwp0joe323k2" path="res://sounds/cats/purr2.ogg" id="9_axfhw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pea36"]
 radius = 56.0
@@ -70,6 +72,13 @@ radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_owm8i"]
 radius = 72.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kq332"]
+streams_count = 2
+stream_0/stream = ExtResource("8_ceg67")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_axfhw")
+stream_1/weight = 1.0
 
 [node name="Cat" type="CharacterBody2D" groups=["cats"]]
 z_index = 1
@@ -183,6 +192,10 @@ autostart = true
 [node name="BlinkTimer" type="Timer" parent="Timers"]
 process_callback = 0
 
+[node name="Purr" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_kq332")
+bus = &"SFX"
+
 [connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]
 [connection signal="area_entered" from="ChargeArea" to="." method="_on_charge_area_area_entered"]
 [connection signal="area_exited" from="ChargeArea" to="." method="_on_charge_area_area_exited"]
@@ -190,3 +203,4 @@ process_callback = 0
 [connection signal="timeout" from="Timers/MoveWaitTimer" to="." method="_on_move_wait_timer_timeout"]
 [connection signal="timeout" from="Timers/PowerGainTimer" to="." method="_on_power_gain_timer_timeout"]
 [connection signal="timeout" from="Timers/BlinkTimer" to="." method="_on_blink_timer_timeout"]
+[connection signal="finished" from="Purr" to="." method="_on_purr_finished"]
