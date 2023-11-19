@@ -1,7 +1,7 @@
 extends Node2D
 
 # Initial Variables
-const power_init = 25123
+const power_init = 25
 const usage_init = 0
 
 # Game Variables
