@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://drbynest8sok0"]
+[gd_scene load_steps=8 format=3 uid="uid://drbynest8sok0"]
 
 [ext_resource type="Script" path="res://scripts/managers/MouseManager.gd" id="1_0jxwa"]
 [ext_resource type="Texture2D" uid="uid://4nrwa7m0frdh" path="res://textures/cursors/cursor_new.png" id="2_ga54x"]
 [ext_resource type="Texture2D" uid="uid://dao8fjq8uxxio" path="res://textures/cursors/cursor_grab.png" id="3_3u25l"]
 [ext_resource type="Texture2D" uid="uid://c0bch570m2hui" path="res://textures/cursors/cursor_pat.png" id="4_dov2s"]
 [ext_resource type="Texture2D" uid="uid://bxoje4gn2jpu0" path="res://textures/light.png" id="5_gcikv"]
+[ext_resource type="AudioStream" uid="uid://dcchjas32njci" path="res://sounds/press.ogg" id="6_q8h18"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oif5y"]
 animations = [{
@@ -54,3 +55,7 @@ range_layer_min = -512
 range_layer_max = 512
 texture = ExtResource("5_gcikv")
 texture_scale = 4.0
+
+[node name="Press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_q8h18")
+bus = &"SFX"

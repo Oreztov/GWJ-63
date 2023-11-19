@@ -23,11 +23,12 @@ func _ready():
 func _physics_process(delta):
 	$CanvasLayer/Cursor.position = get_global_mouse_position()
 
-# Called when the node enters the scene tree for the first time.
 func _input(event):
 	# Get mouse left click
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if in_menu:
+				$Press.play()
 			# If not holding anything
 			if grabbable == null:
 				# Detect if clicked on grabbable

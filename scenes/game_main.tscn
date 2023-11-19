@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwnd1m12iefli"]
+[gd_scene load_steps=21 format=3 uid="uid://dwnd1m12iefli"]
 
 [ext_resource type="PackedScene" uid="uid://crc5ol4wp54lw" path="res://scenes/UI/hud.tscn" id="2_4udfk"]
 [ext_resource type="PackedScene" uid="uid://tkg5ubfkb4yl" path="res://scenes/levels/level_plains.tscn" id="3_5upwy"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4nvder5nwhg3" path="res://scenes/levels/level_mesa.tscn" id="9_blu77"]
 [ext_resource type="PackedScene" uid="uid://dcu0arnvfefi2" path="res://scenes/levels/level_crater.tscn" id="10_vfmcb"]
 [ext_resource type="Texture2D" uid="uid://di0s711t1qt1n" path="res://textures/bg/Cloudy_Sky-Blue_02-1024x512.png" id="11_85e2v"]
+[ext_resource type="Texture2D" uid="uid://dcdh1viymmlxv" path="res://textures/bg/Bumpy_Sky-Blue_02-1024x512.png" id="12_ovr7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efa52"]
 size = Vector2(1920, 1080)
@@ -53,11 +54,32 @@ tracks/0/keys = {
 "values": [Vector2(-1024, -512), Vector2(-1023.89, -511.943), Vector2(-1023.77, -511.887), Vector2(-1023.55, -511.777), Vector2(-2048.11, -1024.06)]
 }
 
+[sub_resource type="Animation" id="Animation_sbuit"]
+resource_name = "scroll_over"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1024, -512), Vector2(-1023.89, -511.943), Vector2(-1023.77, -511.887), Vector2(-1023.55, -511.777), Vector2(-2048.11, -1024.06)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w13is"]
 _data = {
 "RESET": SubResource("Animation_f5ngi"),
-"scroll": SubResource("Animation_umbrb")
+"scroll": SubResource("Animation_umbrb"),
+"scroll_over": SubResource("Animation_sbuit")
 }
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ukrd"]
+blend_mode = 2
 
 [node name="game_main" type="Node2D"]
 
@@ -133,9 +155,6 @@ shape = SubResource("RectangleShape2D_nhfyi")
 layer = -3
 
 [node name="CloudBG" type="TextureRect" parent="BGCanvasLayer"]
-show_behind_parent = true
-z_index = -1000
-z_as_relative = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -151,6 +170,29 @@ stretch_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BGCanvasLayer/CloudBG"]
 autoplay = "scroll"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_w13is")
+}
+
+[node name="CloudBG2" type="TextureRect" parent="BGCanvasLayer"]
+modulate = Color(1, 1, 1, 0.0901961)
+material = SubResource("CanvasItemMaterial_3ukrd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 5120.0
+offset_bottom = 2560.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_ovr7f")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BGCanvasLayer/CloudBG2"]
+autoplay = "scroll_over"
 speed_scale = 4.0
 libraries = {
 "": SubResource("AnimationLibrary_w13is")
