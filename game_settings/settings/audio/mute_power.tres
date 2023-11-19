@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cob13gnjcvop6"]
+
+[ext_resource type="Script" path="res://game_settings/templates/audio/audio_mute.gd" id="1_tkewm"]
+
+[resource]
+resource_name = "mute_power"
+script = ExtResource("1_tkewm")
+audio_bus = "Power"
+current = false
+default = false
+name = "mute_power"
+category = "audio"
+value_type = 1
+value_hint = 0
+value_hint_string = ""

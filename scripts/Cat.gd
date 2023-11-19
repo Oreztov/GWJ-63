@@ -25,9 +25,11 @@ var is_moving = false
 var in_generator = false
 var in_scratcher = false
 var is_purring = false
+var can_power_sound = true
 
 var power_time = 0
 var purr_time = 0
+var sound_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,6 +42,8 @@ func _ready():
 	$Timers/PowerGainTimer.paused = true
 	
 	_on_purr_finished()
+	
+	MouseManager.exit_menu.connect(_on_purr_finished)
 	
 	
 
@@ -150,6 +154,11 @@ func _on_power_gain_timer_timeout():
 	if power_time > 0:
 		PowerManager.change_power(PowerManager.power_gain)
 		SpawnManager.create_popup(global_position, load("res://textures/UI/power.png"), str(PowerManager.power_gain))
+		if can_power_sound:
+			$Power.play()
+			sound_count += 1
+		else:
+			$Timers/SoundTimeout.wait_time = 0.01
 
 
 func _on_charge_area_area_entered(area):
@@ -188,3 +197,14 @@ func _on_purr_finished():
 
 func _on_purr_stop_timer_timeout():
 	_on_purr_finished()
+
+
+func _on_sound_count_timer_timeout():
+	if sound_count >= 3:
+		can_power_sound = false
+		$Timers/SoundTimeout.start()
+
+
+func _on_sound_timeout_timeout():
+	can_power_sound = true
+	sound_count = 0

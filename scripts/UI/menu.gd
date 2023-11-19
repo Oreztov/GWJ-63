@@ -20,8 +20,10 @@ func toggle_menu():
 	paused.emit(visible)
 	if visible:
 		MouseManager.menu_enter()
+		AudioServer.set_bus_mute(3, true)
 	else:
 		MouseManager.menu_exit()
+		AudioServer.set_bus_mute(3, false)
 
 func _on_play_button_pressed():
 	if not ingame:

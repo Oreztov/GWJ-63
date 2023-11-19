@@ -11,6 +11,13 @@ var grabbed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("grabbables")
+	# No collision for a second
+	if item:
+		collision_layer = 2
+		get_tree().create_timer(1, false, true).timeout.connect(enable_collision)
+		
+func enable_collision():
+	collision_layer = 1
 	
 func _physics_process(delta):
 	move_and_collide(Vector2.ZERO)

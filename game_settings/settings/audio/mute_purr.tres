@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://covaeftav2mdr"]
+
+[ext_resource type="Script" path="res://game_settings/templates/audio/audio_mute.gd" id="1_bepeg"]
+
+[resource]
+resource_name = "mute_purr"
+script = ExtResource("1_bepeg")
+audio_bus = "Purr"
+current = false
+default = false
+name = "mute_purr"
+category = "audio"
+value_type = 1
+value_hint = 0
+value_hint_string = ""

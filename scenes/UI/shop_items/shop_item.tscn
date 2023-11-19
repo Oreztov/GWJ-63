@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://63jxd13dps3a"]
+[gd_scene load_steps=9 format=3 uid="uid://63jxd13dps3a"]
 
 [ext_resource type="Theme" uid="uid://cin6j81rygssi" path="res://resources/themes/shop_theme.tres" id="1_11j5w"]
 [ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="2_cxhde"]
 [ext_resource type="Script" path="res://scripts/UI/shop_item.gd" id="2_ic1te"]
 [ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="4_epr6o"]
+[ext_resource type="AudioStream" uid="uid://dofair0ausqq5" path="res://sounds/build.ogg" id="5_o1etd"]
 
 [sub_resource type="Gradient" id="Gradient_1coq2"]
 
@@ -107,5 +108,9 @@ grow_vertical = 2
 text = "X"
 label_settings = SubResource("LabelSettings_840lf")
 horizontal_alignment = 1
+
+[node name="Build" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_o1etd")
+bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

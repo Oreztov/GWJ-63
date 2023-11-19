@@ -11,6 +11,8 @@ var in_menu = true
 @onready var camera_reference = null
 
 signal zoom_changed
+signal enter_menu
+signal exit_menu
 
 func _ready():
 	set_menu()
@@ -63,10 +65,12 @@ func regain_power():
 func menu_enter():
 	in_menu = true
 	set_menu()
+	enter_menu.emit()
 
 func menu_exit():
 	in_menu = false
 	set_menu()
+	exit_menu.emit()
 	
 func set_menu():
 	if in_menu:

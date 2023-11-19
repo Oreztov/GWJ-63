@@ -52,6 +52,7 @@ func unlock():
 	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.hide()
 	PowerManager.area_unlocked.emit(self)
 	SpawnManager.on_level_ready.emit(self, cat_colors)
+	$Reveal.play()
 
 func _on_uncover_button_pressed():
 	if PowerManager.power >= PowerManager.area_cost:

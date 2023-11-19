@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjns4ocojvbog"]
+[gd_scene load_steps=19 format=3 uid="uid://bjns4ocojvbog"]
 
 [ext_resource type="Script" path="res://scripts/Cat.gd" id="1_it10l"]
 [ext_resource type="Texture2D" uid="uid://b3ghu8jvtfgo3" path="res://textures/cats/cat_base.png" id="2_1blq3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b65c7mpcyn7kw" path="res://textures/cats/cat_eyes_closed.png" id="7_xm0vm"]
 [ext_resource type="AudioStream" uid="uid://cudo0uncajtep" path="res://sounds/cats/purr1.ogg" id="8_ceg67"]
 [ext_resource type="AudioStream" uid="uid://nwp0joe323k2" path="res://sounds/cats/purr2.ogg" id="9_axfhw"]
+[ext_resource type="AudioStream" uid="uid://dk27io8uf1hsy" path="res://sounds/cats/power.ogg" id="10_0w3p4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pea36"]
 radius = 56.0
@@ -196,10 +197,22 @@ process_callback = 0
 process_callback = 0
 one_shot = true
 
+[node name="SoundCountTimer" type="Timer" parent="Timers"]
+process_callback = 0
+autostart = true
+
+[node name="SoundTimeout" type="Timer" parent="Timers"]
+process_callback = 0
+one_shot = true
+
 [node name="Purr" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kq332")
 volume_db = 5.0
-bus = &"SFX"
+bus = &"Purr"
+
+[node name="Power" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0w3p4")
+bus = &"Power"
 
 [connection signal="mouse_entered" from="PatArea" to="." method="_on_pat_area_mouse_entered"]
 [connection signal="area_entered" from="ChargeArea" to="." method="_on_charge_area_area_entered"]
@@ -209,4 +222,6 @@ bus = &"SFX"
 [connection signal="timeout" from="Timers/PowerGainTimer" to="." method="_on_power_gain_timer_timeout"]
 [connection signal="timeout" from="Timers/BlinkTimer" to="." method="_on_blink_timer_timeout"]
 [connection signal="timeout" from="Timers/PurrStopTimer" to="." method="_on_purr_stop_timer_timeout"]
+[connection signal="timeout" from="Timers/SoundCountTimer" to="." method="_on_sound_count_timer_timeout"]
+[connection signal="timeout" from="Timers/SoundTimeout" to="." method="_on_sound_timeout_timeout"]
 [connection signal="finished" from="Purr" to="." method="_on_purr_finished"]

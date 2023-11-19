@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl1n5hla1lvfn"]
+[gd_scene load_steps=14 format=3 uid="uid://dl1n5hla1lvfn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_c23ku"]
 [ext_resource type="Texture2D" uid="uid://m0k36chh2snf" path="res://textures/bg/border.png" id="2_8evvy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1xsc2u5hb3nl" path="res://textures/UI/power.png" id="4_7vmmw"]
 [ext_resource type="FontFile" uid="uid://cq0cpphi3m2it" path="res://fonts/static/PlaypenSans-SemiBold.ttf" id="4_f33tw"]
 [ext_resource type="Texture2D" uid="uid://dagcmcbgn8prt" path="res://textures/UI/power_usage.png" id="6_p8tg1"]
+[ext_resource type="AudioStream" uid="uid://ds1xqtblowr6v" path="res://sounds/woosh.ogg" id="7_fegs3"]
 
 [sub_resource type="Gradient" id="Gradient_d18a4"]
 
@@ -152,5 +153,10 @@ grow_vertical = 2
 text = "X"
 label_settings = SubResource("LabelSettings_18wnp")
 horizontal_alignment = 1
+
+[node name="Reveal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fegs3")
+volume_db = 10.0
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/UncoverButton" to="." method="_on_uncover_button_pressed"]

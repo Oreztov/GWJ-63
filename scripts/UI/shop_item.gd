@@ -35,6 +35,7 @@ func buy():
 	# If an item, put item in hand
 	if item != null:
 		SpawnManager.spawn_grabbable_in_hand(item)
+	$Build.play()
 
 func update():
 	if quantity <= 0:
@@ -59,6 +60,7 @@ func update_locked():
 
 func _on_button_pressed():
 	buy()
+	get_parent().get_parent().get_parent().get_parent().toggle_shop()
 	
 func restock():
 	if unlocked:
