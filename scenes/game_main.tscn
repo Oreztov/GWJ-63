@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwnd1m12iefli"]
+[gd_scene load_steps=18 format=3 uid="uid://dwnd1m12iefli"]
 
 [ext_resource type="PackedScene" uid="uid://crc5ol4wp54lw" path="res://scenes/UI/hud.tscn" id="2_4udfk"]
 [ext_resource type="PackedScene" uid="uid://tkg5ubfkb4yl" path="res://scenes/levels/level_plains.tscn" id="3_5upwy"]
@@ -8,22 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cxlcaipv7pddl" path="res://scenes/levels/level_waters.tscn" id="6_2exto"]
 [ext_resource type="PackedScene" uid="uid://ua44vsbkstaj" path="res://scenes/levels/level_forest.tscn" id="7_j633a"]
 [ext_resource type="PackedScene" uid="uid://t0qjc1gj5u8x" path="res://scenes/items/generator.tscn" id="8_hkgwe"]
-[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="9_5okrn"]
 [ext_resource type="PackedScene" uid="uid://b4nvder5nwhg3" path="res://scenes/levels/level_mesa.tscn" id="9_blu77"]
 [ext_resource type="PackedScene" uid="uid://dcu0arnvfefi2" path="res://scenes/levels/level_crater.tscn" id="10_vfmcb"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0b8u"]
-shader = ExtResource("9_5okrn")
-shader_parameter/cloudscale = 1.1
-shader_parameter/speed = 0.02
-shader_parameter/clouddark = 0.5
-shader_parameter/cloudlight = 0.485
-shader_parameter/cloudcover = 1.125
-shader_parameter/cloudalpha = 8.0
-shader_parameter/skytint = 0.425
-shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
-shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
-shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+[ext_resource type="Texture2D" uid="uid://di0s711t1qt1n" path="res://textures/bg/Cloudy_Sky-Blue_02-1024x512.png" id="11_85e2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efa52"]
 size = Vector2(1920, 1080)
@@ -33,6 +20,44 @@ size = Vector2(5760, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhfyi"]
 size = Vector2(1080, 3240)
+
+[sub_resource type="Animation" id="Animation_f5ngi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_umbrb"]
+resource_name = "scroll"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1024, -512), Vector2(-1023.89, -511.943), Vector2(-1023.77, -511.887), Vector2(-1023.55, -511.777), Vector2(-2048.11, -1024.06)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w13is"]
+_data = {
+"RESET": SubResource("Animation_f5ngi"),
+"scroll": SubResource("Animation_umbrb")
+}
 
 [node name="game_main" type="Node2D"]
 
@@ -49,16 +74,6 @@ script = ExtResource("3_yprvs")
 [node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDCanvasLayer" instance=ExtResource("2_4udfk")]
-visible = false
-mouse_filter = 2
-
-[node name="Clouds" type="ColorRect" parent="."]
-z_index = -5
-material = SubResource("ShaderMaterial_j0b8u")
-offset_left = -2000.0
-offset_top = -1200.0
-offset_right = 4000.0
-offset_bottom = 2200.0
 mouse_filter = 2
 
 [node name="Levels" type="Node2D" parent="."]
@@ -113,3 +128,30 @@ shape = SubResource("RectangleShape2D_nhfyi")
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="LevelBounds"]
 position = Vector2(4380, 540)
 shape = SubResource("RectangleShape2D_nhfyi")
+
+[node name="BGCanvasLayer" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="CloudBG" type="TextureRect" parent="BGCanvasLayer"]
+show_behind_parent = true
+z_index = -1000
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 5120.0
+offset_bottom = 2560.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_85e2v")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BGCanvasLayer/CloudBG"]
+autoplay = "scroll"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_w13is")
+}

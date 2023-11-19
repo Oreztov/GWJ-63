@@ -31,6 +31,7 @@ grow_horizontal = 2
 mouse_filter = 2
 
 [node name="PowerPanel" type="PanelContainer" parent="Topbar"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Available Power"
 mouse_filter = 1
@@ -45,12 +46,14 @@ expand_mode = 3
 
 [node name="PowerLabel" type="Label" parent="Topbar/PowerPanel/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 10
 text = "1984"
 
 [node name="VSeparator" type="VSeparator" parent="Topbar"]
 layout_mode = 2
 
 [node name="UsagePanel" type="PanelContainer" parent="Topbar"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Power Usage (per second)"
 mouse_filter = 1
@@ -65,6 +68,7 @@ expand_mode = 3
 
 [node name="UsageLabel" type="Label" parent="Topbar/UsagePanel/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 10
 text = "6969"
 
 [node name="UsageUnits" type="Label" parent="Topbar/UsagePanel/HBoxContainer"]

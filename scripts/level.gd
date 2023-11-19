@@ -13,7 +13,7 @@ func _ready():
 	
 	PowerManager.area_cost_updated.connect(update_cost)
 	
-	$Clouds.visible = not unlocked
+	$Background.visible = unlocked
 	$LevelBounds/LevelBlock.disabled = unlocked
 	if unlocked:
 		unlock()
@@ -46,7 +46,7 @@ func set_available():
 	
 func unlock():
 	unlocked = true
-	$Clouds.hide()
+	$Background.show()
 	$LevelBounds/LevelBlock.disabled = true
 	$CanvasLayer/Control/VBoxContainer/UncoverButton.hide()
 	$CanvasLayer/Control/VBoxContainer/HBoxContainer/Label2.hide()

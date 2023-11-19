@@ -1,22 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://hyg24vr0017n"]
+[gd_scene load_steps=9 format=3 uid="uid://hyg24vr0017n"]
 
 [ext_resource type="Theme" uid="uid://y7bqealur7af" path="res://resources/themes/menu_theme.tres" id="1_a4ogi"]
 [ext_resource type="PackedScene" uid="uid://c83lmhytj2iiq" path="res://scenes/UI/menu.tscn" id="2_qy30w"]
 [ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="2_suw8g"]
-[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="3_tvu2t"]
+[ext_resource type="Texture2D" uid="uid://di0s711t1qt1n" path="res://textures/bg/Cloudy_Sky-Blue_02-1024x512.png" id="4_uxb02"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6bki"]
-shader = ExtResource("3_tvu2t")
-shader_parameter/cloudscale = 1.1
-shader_parameter/speed = 0.02
-shader_parameter/clouddark = 0.5
-shader_parameter/cloudlight = 0.485
-shader_parameter/cloudcover = 1.125
-shader_parameter/cloudalpha = 8.0
-shader_parameter/skytint = 0.425
-shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
-shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
-shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+[sub_resource type="Animation" id="Animation_f5ngi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_umbrb"]
+resource_name = "scroll"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1024, -512), Vector2(-1023.89, -511.943), Vector2(-1023.77, -511.887), Vector2(-1023.55, -511.777), Vector2(-2048.11, -1024.06)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w13is"]
+_data = {
+"RESET": SubResource("Animation_f5ngi"),
+"scroll": SubResource("Animation_umbrb")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yk1vq"]
+blend_mode = 2
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -31,16 +59,6 @@ script = ExtResource("2_suw8g")
 [node name="Menu" parent="." instance=ExtResource("2_qy30w")]
 layout_mode = 1
 
-[node name="Clouds" type="ColorRect" parent="."]
-z_index = -5
-material = SubResource("ShaderMaterial_e6bki")
-layout_mode = 0
-offset_left = -2400.0
-offset_top = -1704.0
-offset_right = 3600.0
-offset_bottom = 1696.0
-mouse_filter = 2
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -54,3 +72,51 @@ offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
 value = 50.0
+
+[node name="CloudBG" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 5120.0
+offset_bottom = 2560.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_uxb02")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CloudBG"]
+autoplay = "scroll"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_w13is")
+}
+
+[node name="CloudBG2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.113725)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_yk1vq")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 5120.0
+offset_bottom = 2560.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_uxb02")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CloudBG2"]
+autoplay = "scroll"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_w13is")
+}
