@@ -22,7 +22,7 @@ var mouse_reference = null
 
 # Cat Flags
 var is_moving = false
-var in_generator = false
+var in_generator = []
 var in_scratcher = false
 var is_purring = false
 var can_power_sound = true
@@ -39,7 +39,6 @@ func _ready():
 	$Timers/BlinkTimer.wait_time = randf_range(blink_time_min, blink_time_max)
 	$Timers/BlinkTimer.start()
 	$Timers/PowerGainTimer.wait_time = PowerManager.power_gain_time
-	$Timers/PowerGainTimer.paused = true
 	
 	_on_purr_finished()
 	
@@ -63,7 +62,7 @@ func _physics_process(delta):
 			rotation = 0
 		move_and_slide()
 	# Handle powering
-	if in_generator:
+	if len(in_generator) > 0:
 		power_time -= delta
 	var power_progress = power_time / PowerManager.power_time_max
 	if power_time > 0:
@@ -151,7 +150,7 @@ func new_move():
 
 func _on_power_gain_timer_timeout():
 	# Gain power
-	if power_time > 0:
+	if power_time > 0 and len(in_generator) > 0:
 		PowerManager.change_power(PowerManager.power_gain)
 		SpawnManager.create_popup(global_position, load("res://textures/UI/power.png"), str(PowerManager.power_gain))
 		if can_power_sound:
@@ -164,8 +163,9 @@ func _on_power_gain_timer_timeout():
 func _on_charge_area_area_entered(area):
 	# Entered generator
 	if area.is_in_group("generator"):
-		in_generator = true
-		$Timers/PowerGainTimer.paused = false
+		# Not already enetered
+		if in_generator.find(area) == -1:
+			in_generator.append(area)
 	# Entered mouse
 	elif area.is_in_group("mouse"):
 		mouse_reference = area.get_parent()
@@ -174,8 +174,7 @@ func _on_charge_area_area_entered(area):
 func _on_charge_area_area_exited(area):
 	# Exited generator
 	if area.is_in_group("generator"):
-		in_generator = false
-		$Timers/PowerGainTimer.paused = true
+		in_generator.erase(area)
 	# Exited mouse
 	elif area.is_in_group("mouse"):
 		mouse_reference = null

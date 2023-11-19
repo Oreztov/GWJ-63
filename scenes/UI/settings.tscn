@@ -8,11 +8,11 @@
 [ext_resource type="Resource" uid="uid://d1eopju0s06ar" path="res://game_settings/settings/audio/music.tres" id="6_cfa6j"]
 [ext_resource type="Resource" uid="uid://dxwdbg7e8bcww" path="res://game_settings/settings/audio/sfx.tres" id="7_68fg6"]
 [ext_resource type="FontFile" uid="uid://cq0cpphi3m2it" path="res://fonts/static/PlaypenSans-SemiBold.ttf" id="7_nti7g"]
-[ext_resource type="Texture2D" uid="uid://caev5v5wx44xw" path="res://textures/travel.png" id="8_tsfas"]
 [ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="8_xslih"]
-[ext_resource type="Texture2D" uid="uid://ca0dlc7dvcsgh" path="res://textures/GWJ-Full-Logo-tag-4k.png" id="9_bhaa0"]
 [ext_resource type="Resource" uid="uid://covaeftav2mdr" path="res://game_settings/settings/audio/mute_purr.tres" id="10_tdg21"]
 [ext_resource type="Resource" uid="uid://cob13gnjcvop6" path="res://game_settings/settings/audio/mute_power.tres" id="12_5dtga"]
+[ext_resource type="Texture2D" uid="uid://caev5v5wx44xw" path="res://textures/branding/travel.png" id="12_j1ntb"]
+[ext_resource type="Texture2D" uid="uid://ca0dlc7dvcsgh" path="res://textures/branding/GWJ-Full-Logo-tag-4k.png" id="13_vx15y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jwotl"]
 font = ExtResource("2_7hye2")
@@ -215,12 +215,12 @@ mouse_filter = 2
 [node name="Travel" type="Sprite2D" parent="Control"]
 position = Vector2(1616, 744)
 scale = Vector2(0.405555, 0.405555)
-texture = ExtResource("8_tsfas")
+texture = ExtResource("12_j1ntb")
 
 [node name="Gwj-full-logo-tag-4k" type="Sprite2D" parent="Control"]
 position = Vector2(1616, 288)
 scale = Vector2(0.337111, 0.337111)
-texture = ExtResource("9_bhaa0")
+texture = ExtResource("13_vx15y")
 
 [connection signal="pressed" from="Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]
 
